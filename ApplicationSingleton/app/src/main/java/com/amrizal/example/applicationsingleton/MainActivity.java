@@ -2,6 +2,7 @@ package com.amrizal.example.applicationsingleton;
 
 import android.app.ProgressDialog;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,19 +52,10 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.myswitch:
-                showProgress = !showProgress;
-                item.setChecked(showProgress);
-
-                if(showProgress)
-                    openProgDialog();
-                else
-                    closeProgDialog();
-
-                break;
             case R.id.something:
-                break;
-            case R.id.switchForActionBar:
+                Snackbar.make(findViewById(R.id.myCoordinatorLayout), R.string.snack_time,
+                        Snackbar.LENGTH_SHORT)
+                        .show();
                 break;
             default:
                 break;
