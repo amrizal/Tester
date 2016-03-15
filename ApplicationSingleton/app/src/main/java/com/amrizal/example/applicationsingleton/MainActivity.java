@@ -2,6 +2,7 @@ package com.amrizal.example.applicationsingleton;
 
 import android.app.ProgressDialog;
 import android.os.Handler;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
@@ -12,7 +13,9 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
-public class MainActivity extends AppCompatActivity{
+import java.util.SimpleTimeZone;
+
+public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private ProgressDialog progDialog;
@@ -36,6 +39,12 @@ public class MainActivity extends AppCompatActivity{
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        MenuItem toggleItem = menu.findItem(R.id.myswitch);
+        View toggleView =  MenuItemCompat.getActionView(toggleItem);
+        SwitchCompat toggle = (SwitchCompat) toggleView.findViewById(R.id.switchForActionBar);
+        toggle.setOnCheckedChangeListener(this);
+
         return true;
     }
 
@@ -51,6 +60,10 @@ public class MainActivity extends AppCompatActivity{
                 else
                     closeProgDialog();
 
+                break;
+            case R.id.something:
+                break;
+            case R.id.switchForActionBar:
                 break;
             default:
                 break;
@@ -95,5 +108,15 @@ public class MainActivity extends AppCompatActivity{
             }
         };
         mHandler.post(uiThread);
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        Log.d(TAG, "Switch state to " + isChecked);
+
+        if(isChecked)
+            openProgDialog();
+        else
+            closeProgDialog();
     }
 }
