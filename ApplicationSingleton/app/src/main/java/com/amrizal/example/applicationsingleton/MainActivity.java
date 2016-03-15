@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             case R.id.something:
                 Snackbar.make(findViewById(R.id.myCoordinatorLayout), R.string.snack_time,
                         Snackbar.LENGTH_SHORT)
+                        .setAction(R.string.undo_string, new MyUndoListener())
                         .show();
                 break;
             default:
@@ -110,5 +111,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             openProgDialog();
         else
             closeProgDialog();
+    }
+
+    private class MyUndoListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            Log.d(TAG, "Undone!");
+        }
     }
 }
