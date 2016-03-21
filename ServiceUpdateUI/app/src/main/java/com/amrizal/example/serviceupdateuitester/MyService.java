@@ -72,7 +72,7 @@ public class MyService extends Service {
         broadcaster.sendBroadcast(intent);
 
 
-        if(counter % 10 == 0){
+        if(counter % 10  == 0){
             final Intent activity = new Intent(this, AlertActivity.class);
             activity.putExtras(intent.getExtras());
             activity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
