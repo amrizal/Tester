@@ -2,6 +2,7 @@ package com.amrizal.example.serviceupdateuitester;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.PowerManager;
@@ -59,8 +60,13 @@ public class AlertActivity extends AppCompatActivity {
                     break;
             }
 
-            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), notification);
-            mp.start();
+            //interrupt any playing music
+            Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+            r.play();
+
+            //doesn't interrupt any playing music
+            //MediaPlayer mp = MediaPlayer.create(getApplicationContext(), notification);
+            //mp.start();
         }
     }
 
