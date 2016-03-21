@@ -70,5 +70,15 @@ public class MyService extends Service {
         if(message != null)
             intent.putExtra(MYSERVICE_MESSAGE, message);
         broadcaster.sendBroadcast(intent);
+
+
+        if(counter % 10 == 0){
+            final Intent activity = new Intent(this, AlertActivity.class);
+            activity.putExtras(intent.getExtras());
+            activity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            activity.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            activity.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+            startActivity(activity);
+        }
     }
 }
