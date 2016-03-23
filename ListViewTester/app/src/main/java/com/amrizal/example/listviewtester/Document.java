@@ -12,6 +12,16 @@ public class Document {
     String description = "";
     String status = "";
 
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
+    }
+
+    boolean enable = false;
+
     public String getDescription() {
         return description;
     }
