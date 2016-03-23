@@ -18,6 +18,7 @@ import org.w3c.dom.Text;
 public class AlertActivity extends AppCompatActivity {
 
     PowerManager.WakeLock wakeLock;
+    Ringtone ringtone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,10 @@ public class AlertActivity extends AppCompatActivity {
         dismiss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(null != ringtone && ringtone.isPlaying()){
+                   ringtone.stop();
+                }
+
                 wakeLock.release();
                 finish();
             }
@@ -61,8 +66,8 @@ public class AlertActivity extends AppCompatActivity {
             }
 
             //interrupt any playing music
-            Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-            r.play();
+            ringtone = RingtoneManager.getRingtone(getApplicationContext(), notification);
+            ringtone.play();
 
             //doesn't interrupt any playing music
             //MediaPlayer mp = MediaPlayer.create(getApplicationContext(), notification);
