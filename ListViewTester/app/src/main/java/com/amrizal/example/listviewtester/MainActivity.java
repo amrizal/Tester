@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
             document.setId(id);
             document.setTitle("Title " + String.valueOf(id));
             document.setDescription("Description " + String.valueOf(id));
+            document.setEnable(i%3 == 0);
             data.add(document);
         }
     }

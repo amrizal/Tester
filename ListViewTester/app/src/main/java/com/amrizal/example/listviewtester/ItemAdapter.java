@@ -67,9 +67,6 @@ public class ItemAdapter extends BaseAdapter implements CompoundButton.OnChecked
             holder.description = (TextView)convertView.findViewById(R.id.document_description);
             holder.layout = convertView.findViewById(R.id.document_layout);
             holder.toggle = (Switch) convertView.findViewById(R.id.document_enable);
-            holder.toggle.setOnCheckedChangeListener(this);
-            //holder.toggle.setOnCheckedChangeListener(new ToggleCheckedChangedListener());
-            //holder.toggle.setOnCheckedChangeListener(toggleListener);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder)convertView.getTag();
@@ -78,8 +75,12 @@ public class ItemAdapter extends BaseAdapter implements CompoundButton.OnChecked
         Document document = data.get(position);
         holder.label.setText(document.getTitle());
         holder.description.setText(document.getDescription());
-        holder.toggle.setChecked(document.isEnable());
+        boolean enable = document.isEnable();
+        holder.toggle.setChecked(enable);
         holder.toggle.setTag(position);
+        holder.toggle.setOnCheckedChangeListener(this);
+        //holder.toggle.setOnCheckedChangeListener(new ToggleCheckedChangedListener());
+        //holder.toggle.setOnCheckedChangeListener(toggleListener);
 
         if(document.getStatus().equalsIgnoreCase(Document.ACTIVE))
             holder.layout.setBackgroundColor(Color.YELLOW);

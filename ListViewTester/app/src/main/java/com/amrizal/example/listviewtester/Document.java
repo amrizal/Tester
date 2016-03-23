@@ -11,6 +11,7 @@ public class Document {
     String title = "";
     String description = "";
     String status = "";
+    boolean enable = false;
 
     public boolean isEnable() {
         return enable;
@@ -19,8 +20,6 @@ public class Document {
     public void setEnable(boolean enable) {
         this.enable = enable;
     }
-
-    boolean enable = false;
 
     public String getDescription() {
         return description;
