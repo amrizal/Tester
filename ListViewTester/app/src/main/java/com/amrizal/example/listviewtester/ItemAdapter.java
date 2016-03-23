@@ -2,13 +2,17 @@ package com.amrizal.example.listviewtester;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -20,6 +24,7 @@ import java.util.HashMap;
  */
 public class ItemAdapter extends BaseAdapter implements CompoundButton.OnCheckedChangeListener {
 
+    private static final String TAG = ItemAdapter.class.getSimpleName();
     private final Context context;
     private ArrayList<Document> data;
     private LayoutInflater inflater;
@@ -35,10 +40,29 @@ public class ItemAdapter extends BaseAdapter implements CompoundButton.OnChecked
             document.setEnable(isChecked);
         }
     };
+    private AdapterView.OnItemSelectedListener spinnerListener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+           String selected = (String) parent.getItemAtPosition(position);
+            if(null != parent){
+                int tag = (int) parent.getTag();
+                Log.d(TAG, "Position:" + view.getTag() + ", Selected: " + tag);
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    };
+    private final ArrayAdapter<CharSequence> adapter;
 
     public ItemAdapter(Context context) {
         this.context = context;
         inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        adapter = ArrayAdapter.createFromResource(context,
+                R.array.planets_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     }
 
     @Override
@@ -68,6 +92,10 @@ public class ItemAdapter extends BaseAdapter implements CompoundButton.OnChecked
             holder.layout = convertView.findViewById(R.id.document_layout);
             holder.toggle = (Switch) convertView.findViewById(R.id.document_enable);
             convertView.setTag(holder);
+
+            holder.spinner = (Spinner) convertView.findViewById(R.id.planets_spinner);
+
+            holder.spinner.setAdapter(adapter);
         } else {
             holder = (ViewHolder)convertView.getTag();
         }
@@ -81,6 +109,9 @@ public class ItemAdapter extends BaseAdapter implements CompoundButton.OnChecked
         holder.toggle.setOnCheckedChangeListener(this);
         //holder.toggle.setOnCheckedChangeListener(new ToggleCheckedChangedListener());
         //holder.toggle.setOnCheckedChangeListener(toggleListener);
+
+        holder.spinner.setOnItemSelectedListener(spinnerListener);
+        holder.spinner.setTag(position);
 
         if(document.getStatus().equalsIgnoreCase(Document.ACTIVE))
             holder.layout.setBackgroundColor(Color.YELLOW);
@@ -112,6 +143,7 @@ public class ItemAdapter extends BaseAdapter implements CompoundButton.OnChecked
         public TextView description;
         public View layout;
         public Switch toggle;
+        public Spinner spinner;
     }
 
     private class ToggleCheckedChangedListener implements CompoundButton.OnCheckedChangeListener{

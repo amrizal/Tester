@@ -18,9 +18,17 @@
             android:layout_height="wrap_content"
             android:text="Document Description"/>
     </LinearLayout>
-    <Switch
-        android:id="@+id/document_enable"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true">
+        <Switch
+            android:id="@+id/document_enable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Spinner
+            android:id="@+id/planets_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 </RelativeLayout>
