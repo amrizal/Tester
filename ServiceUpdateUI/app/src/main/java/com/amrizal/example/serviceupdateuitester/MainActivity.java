@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private BroadcastReceiver receiver;
     private TextView counter;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         counter = (TextView) findViewById(R.id.counter);
+
+        sharedPreferences = getSharedPreferences(Constants.PREFERENCE_NAME, Context.MODE_PRIVATE);
 
         receiver = new BroadcastReceiver() {
             @Override
@@ -59,8 +63,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         MenuItem toggleItem = menu.findItem(R.id.myswitch);
         View toggleView =  MenuItemCompat.getActionView(toggleItem);
+
+        boolean isServiceRunning = sharedPreferences.getBoolean(Constants.PREFERENCE_SERVICE_RUNNING, false);
+
         ToggleButton toggleButton = (ToggleButton)toggleView.findViewById(R.id.switchForActionBar);
+        toggleButton.setChecked(isServiceRunning);
         toggleButton.setOnCheckedChangeListener(this);
+
         return true;
     }
 
@@ -86,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
-
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

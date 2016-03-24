@@ -1,7 +1,9 @@
 package com.amrizal.example.serviceupdateuitester;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -19,6 +21,7 @@ public class MyService extends Service {
     public static final String MYSERVICE_MESSAGE = "com.amrizal.example.serviceupdateuitester.MyService.REQUEST_MESSAGE";
     private LocalBroadcastManager broadcaster;
     private final Handler handler = new Handler();
+    SharedPreferences sharedPreferences;
     int counter = 0;
 
     private Runnable sendUpdatesToUI = new Runnable() {
@@ -46,6 +49,7 @@ public class MyService extends Service {
         Log.d(TAG, "onCreate");
 
         broadcaster = LocalBroadcastManager.getInstance(this);
+        sharedPreferences = getSharedPreferences(Constants.PREFERENCE_NAME, Context.MODE_PRIVATE);
     }
 
     @Override
@@ -57,12 +61,16 @@ public class MyService extends Service {
         handler.removeCallbacks(sendUpdatesToUI);
         handler.postDelayed(sendUpdatesToUI, 1000); // 1 second
 
+        sharedPreferences.edit().putBoolean(Constants.PREFERENCE_SERVICE_RUNNING, true).commit();
+
         return START_STICKY;
         //return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public void onDestroy() {
+        sharedPreferences.edit().putBoolean(Constants.PREFERENCE_SERVICE_RUNNING, false).commit();
+
         Toast.makeText(this, "MyService Stopped", Toast.LENGTH_LONG).show();
 
         handler.removeCallbacks(sendUpdatesToUI);
