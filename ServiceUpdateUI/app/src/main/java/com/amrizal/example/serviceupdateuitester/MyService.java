@@ -21,7 +21,6 @@ public class MyService extends Service {
     public static final String MYSERVICE_MESSAGE = "com.amrizal.example.serviceupdateuitester.MyService.REQUEST_MESSAGE";
     private LocalBroadcastManager broadcaster;
     private final Handler handler = new Handler();
-    SharedPreferences sharedPreferences;
     int counter = 0;
 
     private Runnable sendUpdatesToUI = new Runnable() {
@@ -49,19 +48,18 @@ public class MyService extends Service {
         Log.d(TAG, "onCreate");
 
         broadcaster = LocalBroadcastManager.getInstance(this);
-        sharedPreferences = getSharedPreferences(Constants.PREFERENCE_NAME, Context.MODE_PRIVATE);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
         Toast.makeText(this, "My Service Started", Toast.LENGTH_LONG).show();
         Log.d(TAG, "onStart");
 
         handler.removeCallbacks(sendUpdatesToUI);
         handler.postDelayed(sendUpdatesToUI, 1000); // 1 second
 
-        sharedPreferences.edit().putBoolean(Constants.PREFERENCE_SERVICE_RUNNING, true).commit();
+        MyApplication application = (MyApplication)getApplication();
+        application.setServiceRunning(true);
 
         return START_STICKY;
         //return super.onStartCommand(intent, flags, startId);
@@ -69,7 +67,8 @@ public class MyService extends Service {
 
     @Override
     public void onDestroy() {
-        sharedPreferences.edit().putBoolean(Constants.PREFERENCE_SERVICE_RUNNING, false).commit();
+        MyApplication application = (MyApplication)getApplication();
+        application.setServiceRunning(false);
 
         Toast.makeText(this, "MyService Stopped", Toast.LENGTH_LONG).show();
 

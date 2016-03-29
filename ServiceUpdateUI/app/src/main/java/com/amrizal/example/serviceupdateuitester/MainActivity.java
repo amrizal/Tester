@@ -63,11 +63,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         MenuItem toggleItem = menu.findItem(R.id.myswitch);
         View toggleView =  MenuItemCompat.getActionView(toggleItem);
-
-        boolean isServiceRunning = sharedPreferences.getBoolean(Constants.PREFERENCE_SERVICE_RUNNING, false);
-
         ToggleButton toggleButton = (ToggleButton)toggleView.findViewById(R.id.switchForActionBar);
-        toggleButton.setChecked(isServiceRunning);
+
+        MyApplication application = (MyApplication)getApplication();
+        toggleButton.setChecked(application.isServiceRunning());
         toggleButton.setOnCheckedChangeListener(this);
 
         return true;
@@ -84,12 +83,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.button_start:
                 //start the service from here //MyService is your service class name
-                startService(new Intent(this, MyService.class));
+                startService();
                 break;
             case R.id.button_stop:
                 //Stop the running service from here//MyService is your service class name
                 //Service will only stop if it is already running.
-                stopService(new Intent(this, MyService.class));
+                stopService();
                 break;
             default:
                 break;
@@ -100,9 +99,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if(buttonView.getId() == R.id.switchForActionBar) {
             if(isChecked)
-                startService(new Intent(this, MyService.class));
+                startService();
             else
-                stopService(new Intent(this, MyService.class));
+                stopService();
         }
+    }
+
+    void startService(){
+        sharedPreferences.edit().putBoolean(Constants.PREFERENCE_AUTOSTART, true).commit();
+        stopService(new Intent(this, MyService.class));
+        startService(new Intent(this, MyService.class));
+    }
+
+    void stopService(){
+        sharedPreferences.edit().putBoolean(Constants.PREFERENCE_AUTOSTART, false).commit();
+        stopService(new Intent(this, MyService.class));
     }
 }

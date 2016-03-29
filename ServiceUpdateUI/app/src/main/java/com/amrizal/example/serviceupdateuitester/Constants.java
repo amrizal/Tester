@@ -8,4 +8,5 @@ import android.content.Context;
 public class Constants {
     public static final String PREFERENCE_NAME = "com.amrizal.example.serviceupdateuitester";
     public static final String PREFERENCE_SERVICE_RUNNING = "service_running";
+    public static final String PREFERENCE_AUTOSTART = "auto_start";
 }
