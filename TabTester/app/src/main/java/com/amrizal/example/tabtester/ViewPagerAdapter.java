@@ -18,20 +18,10 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        switch (position) {
-            case 0:
-                FragmentOne tab1 = new FragmentOne();
-                return tab1;
-            case 1:
-                FragmentTwo tab2 = new FragmentTwo();
-                return tab2;
-            case 2:
-                FragmentThree tab3 = new FragmentThree();
-                return tab3;
+        if(position >= this.mNumOfTabs)
+            return null;
 
-            default:
-                return null;
-        }
+        return StockFragment.newInstance(String.valueOf(position + 1), null);
     }
 
     @Override
