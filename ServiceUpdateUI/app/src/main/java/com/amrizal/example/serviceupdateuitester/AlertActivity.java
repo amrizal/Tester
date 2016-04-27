@@ -6,8 +6,10 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.PowerManager;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -17,13 +19,21 @@ import org.w3c.dom.Text;
 
 public class AlertActivity extends AppCompatActivity {
 
+    private static final String TAG = AlertActivity.class.getSimpleName();
     PowerManager.WakeLock wakeLock;
-    Ringtone ringtone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alert);
+
+        for (int i=0; i<5; i++) {
+            Log.i(TAG, "Test delay " + (i + 1) + "/5 @ " + SystemClock.elapsedRealtime());
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+            }
+        }
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
@@ -36,10 +46,6 @@ public class AlertActivity extends AppCompatActivity {
         dismiss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(null != ringtone && ringtone.isPlaying()){
-                   ringtone.stop();
-                }
-
                 wakeLock.release();
                 finish();
             }
@@ -57,7 +63,7 @@ public class AlertActivity extends AppCompatActivity {
             text.setText(count);
 
             //loop through to select which alarm to play
-            Integer[] alarmTypes = {RingtoneManager.TYPE_ALARM, RingtoneManager.TYPE_RINGTONE, RingtoneManager.TYPE_NOTIFICATION};
+            /*Integer[] alarmTypes = {RingtoneManager.TYPE_ALARM, RingtoneManager.TYPE_RINGTONE, RingtoneManager.TYPE_NOTIFICATION};
             Uri notification = null;
             for(Integer alarmType:alarmTypes){
                 notification = RingtoneManager.getDefaultUri(alarmType);
@@ -67,7 +73,7 @@ public class AlertActivity extends AppCompatActivity {
 
             //interrupt any playing music
             ringtone = RingtoneManager.getRingtone(getApplicationContext(), notification);
-            ringtone.play();
+            ringtone.play();*/
 
             //doesn't interrupt any playing music
             //MediaPlayer mp = MediaPlayer.create(getApplicationContext(), notification);

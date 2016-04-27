@@ -30,5 +30,10 @@
             android:id="@+id/planets_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_menu_moreoverflow_normal_holo_light"
+            />
     </LinearLayout>
 </RelativeLayout>
