@@ -27,9 +27,8 @@
             </intent-filter>
         </receiver>
 
-        <service
-            android:name=".MyService"
-            android:enabled="true" />
+        <service android:name=".MyService" android:enabled="true" />
+        <service android:name=".AlertIntentService"/>
     </application>
 
 </manifest>
