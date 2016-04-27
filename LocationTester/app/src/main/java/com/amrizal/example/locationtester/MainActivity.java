@@ -11,12 +11,16 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity implements LocationListener {
 
     private TextView latituteField;
     private TextView longitudeField;
     private LocationManager locationManager;
     private String provider;
+    private TextView accuracyField;
+    private TextView lastUpdatedField;
 
 
     @Override
@@ -24,8 +28,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        lastUpdatedField = (TextView) findViewById(R.id.last_updated);
         latituteField = (TextView) findViewById(R.id.TextView02);
         longitudeField = (TextView) findViewById(R.id.TextView04);
+        accuracyField = (TextView) findViewById(R.id.TextView06);
 
         // Get the location manager
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -63,6 +69,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     @Override
     public void onLocationChanged(Location location) {
+        String mydate = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+        lastUpdatedField.setText(mydate);
+        accuracyField.setText(String.valueOf(location.getAccuracy()));
         latituteField.setText(String.valueOf(location.getLatitude()));
         longitudeField.setText(String.valueOf(location.getLongitude()));
     }

@@ -20,6 +20,8 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
                                             GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
@@ -32,14 +34,18 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private LocationRequest mLocationRequest;
     private TextView latituteField;
     private TextView longitudeField;
+    private TextView accuracyField;
+    private TextView lastUpdatedField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        lastUpdatedField = (TextView) findViewById(R.id.last_updated);
         latituteField = (TextView) findViewById(R.id.TextView02);
         longitudeField = (TextView) findViewById(R.id.TextView04);
+        accuracyField = (TextView) findViewById(R.id.TextView06);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -113,6 +119,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     public void onLocationChanged(Location location) {
+        String mydate = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+        lastUpdatedField.setText(mydate);
+        accuracyField.setText(String.valueOf(location.getAccuracy()));
         latituteField.setText(String.valueOf(location.getLatitude()));
         longitudeField.setText(String.valueOf(location.getLongitude()));
     }
