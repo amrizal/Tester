@@ -17,11 +17,15 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int ACCOUNT_CODE = 1601;
     private static final int AUTHORIZATION_CODE = 1993;
+    private static final String SCOPE = "email";
     private Firebase myFirebaseRef;
     TextView textView;
     private AccountManager accountManager;
@@ -119,16 +123,20 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        accountManager.getAuthToken(userAccount, "oauth2:" + getResources().getString(R.string.firebase_url), null, this,
+        accountManager.getAuthToken(userAccount, "oauth2:" + SCOPE, null, this,
                 new OnTokenAcquired(), null);
     }
 
     void OnClick(View view){
         switch (view.getId()){
             case R.id.btn_send_message:
-                myFirebaseRef.child("message").setValue("Do you have data? You'll love Firebase.");
+                String message = DateFormat.getDateTimeInstance().format(new Date());
+                myFirebaseRef.child("message").setValue(message);
                 break;
             case R.id.btn_get_message:
+                break;
+            case R.id.btn_invalidate_account:
+                invalidateToken();
                 break;
             default:
                 break;

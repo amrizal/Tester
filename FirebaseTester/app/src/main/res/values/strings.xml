@@ -5,4 +5,5 @@
     <string name="get_message">Get Message</string>
     <string name="firebase_username">amrizal@outlook.com</string>
     <string name="firebase_password">temp123!@#</string>
+    <string name="invalidate_account">Invalidate Account</string>
 </resources>
