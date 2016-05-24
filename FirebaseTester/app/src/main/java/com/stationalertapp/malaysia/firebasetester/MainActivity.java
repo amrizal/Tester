@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     private AccountManager accountManager;
     private AuthPreferences authPreferences;
+    private Firebase messageCollection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        myFirebaseRef.child("message").addValueEventListener(new ValueEventListener() {
+
+        messageCollection = myFirebaseRef.child("message");
+        //myFirebaseRef.child("message").addValueEventListener(new ValueEventListener() {
+        messageCollection.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 textView.setText((CharSequence) dataSnapshot.getValue());
@@ -131,7 +135,9 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()){
             case R.id.btn_send_message:
                 String message = DateFormat.getDateTimeInstance().format(new Date());
-                myFirebaseRef.child("message").setValue(message);
+                messageCollection.push().setValue(message);
+                //myFirebaseRef.child("message").setValue(message);
+
                 break;
             case R.id.btn_get_message:
                 break;
