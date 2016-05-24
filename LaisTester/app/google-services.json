@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "611522976621-il41i7tnc9k0j7ov8p91sjverh1lnesi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.amrizal.example.laistester",
+            "certificate_hash": "7AE7BD2E89FB922DDB96EE84CA67A3CF6A985CB8"
+          }
+        },
+        {
           "client_id": "611522976621-pknv7s6ifpol2i2liteplv3t9gimnchb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
