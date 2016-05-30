@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -110,12 +111,15 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.add_entry).setEnabled(true);
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        verifyFirebaseConnection();
+
         DatabaseReference myRef = database.getReference("message");
 
         long MillisInHour = 60*60*1000;
         //Query query = myRef.orderByChild("timeStamp").startAt(System.currentTimeMillis()).endAt(System.currentTimeMillis() - MillisInHour);
         query = myRef.orderByChild("timeStamp").endAt(System.currentTimeMillis()).startAt(System.currentTimeMillis() - MillisInHour);
-        myRef.addValueEventListener(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
         //query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -126,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                         list += "\n";
 
                     list += logEntry.getDescription();
-                    Log.d(TAG, "Value is: " + logEntry.getDescription());
+                    //Log.d(TAG, "Value is: " + logEntry.getDescription());
                     //Log.d(TAG, "Value is: " + postSnapshot.getValue());
                 }
                 mStatusTextView.setText(list);
@@ -138,12 +142,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        query.addChildEventListener(new ChildEventListener() {
+        myRef.addChildEventListener(new ChildEventListener() {
         //query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 LogEntry logEntry = dataSnapshot.getValue(LogEntry.class);
-                Log.d(TAG, "Id: " + s + ", Value: " + logEntry.getDescription());
+                Log.d(TAG, "Previous Id: " + s + ", Value: " + logEntry.getDescription());
             }
 
             @Override
@@ -159,6 +163,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void verifyFirebaseConnection() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        database.getReference(".info/connected").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getValue() == true) {
+                //    Snackbar.make(view, getResources().getString(R.string.firebase_connected), Snackbar.LENGTH_SHORT).show();
+                }
+                else{
+                //    Snackbar.make(view, getResources().getString(R.string.firebase_not_connected), Snackbar.LENGTH_LONG).show();
+                }
             }
 
             @Override
