@@ -117,8 +117,8 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference myRef = database.getReference("message");
 
         long MillisInHour = 60*60*1000;
-        //Query query = myRef.orderByChild("timeStamp").startAt(System.currentTimeMillis()).endAt(System.currentTimeMillis() - MillisInHour);
-        query = myRef.orderByChild("timeStamp").endAt(System.currentTimeMillis()).startAt(System.currentTimeMillis() - MillisInHour);
+        Query query = myRef.orderByChild("timeStamp").startAt(System.currentTimeMillis() - MillisInHour);
+        /*query = myRef.orderByChild("timeStamp").endAt(System.currentTimeMillis()).startAt(System.currentTimeMillis() - MillisInHour);
         query.addValueEventListener(new ValueEventListener() {
         //query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -140,10 +140,11 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
-        myRef.addChildEventListener(new ChildEventListener() {
-        //query.addChildEventListener(new ChildEventListener() {
+        //myRef.orderByChild("timeStamp").startAt(System.currentTimeMillis() - MillisInHour).addChildEventListener(new ChildEventListener() {
+        //myRef.orderByChild("timeStamp").limitToLast(4).addChildEventListener(new ChildEventListener() {
+        query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 LogEntry logEntry = dataSnapshot.getValue(LogEntry.class);
