@@ -68,6 +68,14 @@ public class MainActivity extends AppCompatActivity {
                 myRef.push().setValue(new LogEntry(user.getUid(), "Hello, The time is " + dateTimeInstance.format(Calendar.getInstance().getTime())));
             }
         });
+
+        findViewById(R.id.next_stage).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NextActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initFirebase() {

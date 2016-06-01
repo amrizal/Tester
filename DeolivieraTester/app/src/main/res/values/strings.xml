@@ -9,4 +9,5 @@
     <string name="authentication_failed">Authentication failed.</string>
     <string name="firebase_connected">Firebase connected</string>
     <string name="firebase_not_connected">Firebase NOT connected</string>
+    <string name="signed_in_fmt">Sign in as %s</string>
 </resources>

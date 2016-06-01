@@ -4,4 +4,5 @@
     <string name="add_entry">Add Entry</string>
     <string name="firebase_connected">Firebase is connected</string>
     <string name="firebase_not_connected">Firebase is NOT connected</string>
+    <string name="next_stage">Next Stage</string>
 </resources>
