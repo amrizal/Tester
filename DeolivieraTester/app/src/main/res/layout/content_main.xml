@@ -14,11 +14,12 @@
     tools:showIn="@layout/app_bar_main">
 
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/sign_in_button"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/sign_in"
+            android:text="@string/sign_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <Button

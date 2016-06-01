@@ -1,5 +1,6 @@
 package com.amrizal.example.deolivieratester;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -92,10 +93,10 @@ public class MainActivity extends AppCompatActivity
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.sign_in).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signIn();
+                showSignInDialog();
             }
         });
 
@@ -105,6 +106,22 @@ public class MainActivity extends AppCompatActivity
                 FirebaseAuth.getInstance().signOut();
             }
         });
+    }
+
+    private void showSignInDialog() {
+        // custom dialog
+        final Dialog dialog = new Dialog(this);
+        dialog.setTitle(getResources().getString(R.string.sign_in_accounts));
+        dialog.setContentView(R.layout.sign_in_dialog);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signIn();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
     private void signIn() {

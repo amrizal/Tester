@@ -13,4 +13,6 @@
     <string name="default_display_name">Android Studio</string>
     <string name="default_user_id">android.studio@android.com</string>
     <string name="authentication_success">Anon Authenticated!</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_in_accounts">Sign-in Accounts</string>
 </resources>
