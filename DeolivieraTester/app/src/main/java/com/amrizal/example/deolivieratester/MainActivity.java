@@ -1,6 +1,7 @@
 package com.amrizal.example.deolivieratester;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -18,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -28,6 +30,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.server.converter.StringToIntConverter;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -76,6 +79,7 @@ public class MainActivity extends AppCompatActivity
 // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
+                .requestProfile()
                 .requestEmail()
                 .build();
 
@@ -114,31 +118,42 @@ public class MainActivity extends AppCompatActivity
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                if (firebaseAuth.getCurrentUser() != null) {
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + firebaseAuth.getCurrentUser().getUid());
+                    if(user == null ||
+                            (user.getUid() != firebaseAuth.getCurrentUser().getUid())){
+
+                        onFirebaseConnected();
+                    }
+
+                    user = firebaseAuth.getCurrentUser();
+                    Log.d(TAG, "Providers: " + user.getProviders());
+
                 } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out");
+                    signInAnonymously();
                 }
             }
         };
+    }
 
+    private void signInAnonymously() {
         mAuth.signInAnonymously()
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInAnonymously:onComplete:" + task.isSuccessful());
-
+                        View view = findViewById(R.id.coordinator_layout);
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
-                            View view = findViewById(R.id.coordinator_layout);
+
                             Log.w(TAG, "signInAnonymously", task.getException());
                             Snackbar.make(view, getResources().getString(R.string.authentication_failed), Snackbar.LENGTH_LONG).show();
                         }
                         else{
-                            onFirebaseConnected();
+                            Snackbar.make(view, getResources().getString(R.string.authentication_success), Snackbar.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -147,7 +162,7 @@ public class MainActivity extends AppCompatActivity
     private void onFirebaseConnected() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        verifyFirebaseConnection();
+        //verifyFirebaseConnection();
 
         long MillisInHour = 60*60*1000;
         DatabaseReference myRef = database.getReference("message");
@@ -328,6 +343,11 @@ public class MainActivity extends AppCompatActivity
             if (result.isSuccess()) {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
+                String personName = account.getDisplayName();
+                String personEmail = account.getEmail();
+                String personId = account.getId();
+                Uri personPhoto = account.getPhotoUrl();
+
                 firebaseAuthWithGoogle(account);
             } else {
                 // Google Sign In failed, update UI appropriately
@@ -340,7 +360,7 @@ public class MainActivity extends AppCompatActivity
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
         Log.d(TAG, "token: " + acct.getIdToken());
 
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        final AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.getCurrentUser().linkWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -350,13 +370,27 @@ public class MainActivity extends AppCompatActivity
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                        if(task.isSuccessful()){
+                           // ((TextView)findViewById(R.id.display_name)).setText(user.getDisplayName());
+                            //((TextView)findViewById(R.id.user_id)).setText(user.getEmail());
+                        }
+                        else {
+                            Toast.makeText(MainActivity.this, "Authentication failed. " + task.getException(),
                                     Toast.LENGTH_SHORT).show();
+                           // ((TextView)findViewById(R.id.display_name)).setText(getResources().getString(R.string.default_display_name));
+                           // ((TextView)findViewById(R.id.user_id)).setText(getResources().getString(R.string.default_user_id));
                         }
 
                         // ...
                     }
-                });
+                })
+        .addOnFailureListener(this, new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(TAG, "Authentication failed. " + e.getMessage());
+                String message = "Authentication failed. " + e.getMessage();
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
