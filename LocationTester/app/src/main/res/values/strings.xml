@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">LocationTester</string>
+    <string name="address_found">Address found!</string>
+    <string name="no_address_found">No address found</string>
+    <string name="invalid_lat_long_used">Invalid latitude/longitude used</string>
+    <string name="service_not_available">Service not available</string>
+    <string name="no_location_data_provided">No location data provided</string>
+    <string name="no_geocoder_available">No geocoder available</string>
+    <string name="not_available">Not available</string>
 </resources>
