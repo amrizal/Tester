@@ -1,6 +1,4 @@
-package com.amrizal.example.deolivieratester;
-
-import com.google.firebase.database.DataSnapshot;
+package com.checkinapp.checkin;
 
 import org.junit.Test;
 

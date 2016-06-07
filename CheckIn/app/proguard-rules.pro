@@ -15,6 +15,3 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
-
--keepattributes Signature
--keep class com.amrizal.example.deolivieratester.model.** { *; }

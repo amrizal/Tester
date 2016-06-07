@@ -21,7 +21,9 @@ import com.google.android.gms.location.LocationServices;
 
 import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity implements LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class MainActivity extends AppCompatActivity implements LocationListener
+        , GoogleApiClient.ConnectionCallbacks
+        , GoogleApiClient.OnConnectionFailedListener {
 
     private TextView latituteField;
     private TextView longitudeField;

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -20,16 +19,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amrizal.example.deolivieratester.model.LogEntry;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.server.converter.StringToIntConverter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -49,7 +47,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
@@ -137,6 +134,7 @@ public class MainActivity extends AppCompatActivity
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() != null) {
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + firebaseAuth.getCurrentUser().getUid());
+                    Log.d(TAG, "user: " + user);
                     if(user == null ||
                             (user.getUid() != firebaseAuth.getCurrentUser().getUid())){
 
@@ -177,6 +175,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void onFirebaseConnected() {
+        Log.i(TAG, "onFirebaseConnected");
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         //verifyFirebaseConnection();
@@ -258,7 +257,10 @@ public class MainActivity extends AppCompatActivity
                 DatabaseReference myRef = database.getReference("message");
 
                 DateFormat dateTimeInstance = SimpleDateFormat.getDateTimeInstance();
-                myRef.push().setValue(new LogEntry(user.getUid(), "Hello, The time is " + dateTimeInstance.format(Calendar.getInstance().getTime())));
+                LogEntry logEntry = new LogEntry(user.getUid(), "Hello, The time is " + dateTimeInstance.format(Calendar.getInstance().getTime()));
+                myRef.push().setValue(logEntry);
+
+                Log.d(TAG, "logEntry: " + logEntry);
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
             }
