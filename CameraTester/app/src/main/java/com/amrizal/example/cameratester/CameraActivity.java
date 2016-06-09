@@ -29,17 +29,37 @@ public class CameraActivity extends AppCompatActivity {
     public static final int CAMERA_ACTIVITY_RESULT = 1001;
     private static final String TAG = CameraActivity.class.getSimpleName();
     private static final int CAMERA_RESULT = 1002;
+    private static final String BITMAP = "bitmap";
+    private static final String FILE_URI = "file_uri";
 
     private TextView textGPS;
     private TextView textCurrentTime;
     private ImageView placeholder;
     private ProgressBar progressBar;
     private Uri fileUri;
+    private Bitmap displayedBitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
+
+        if (savedInstanceState != null) {
+            displayedBitmap = savedInstanceState.getParcelable(BITMAP);
+            placeholder.setImageBitmap(displayedBitmap);
+            fileUri = Uri.parse(savedInstanceState.getString(FILE_URI));
+        }
+        else{
+            takePicture();
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putParcelable(BITMAP, displayedBitmap);
+        outState.putString(FILE_URI, fileUri.toString());
     }
 
     private void initView() {
@@ -124,19 +144,19 @@ public class CameraActivity extends AppCompatActivity {
                 && data != null) {
 
             fileUri = data.getData();
-            Bitmap newBitmap = getBitmap(fileUri);
+            displayedBitmap = getBitmap(fileUri);
 
-            if(newBitmap != null){
-                Canvas canvas = new Canvas(newBitmap);
+            if(displayedBitmap != null){
+                Canvas canvas = new Canvas(displayedBitmap);
                 Paint paint = new Paint();
                 paint.setColor(Color.WHITE);
                 paint.setShadowLayer(20, 0,0, Color.BLACK);
                 paint.setTextSize(20);
                 canvas.drawText("SOMETHING KOOOLL", 10, 10, paint);
 
-                Log.d(TAG, "width: " + newBitmap.getWidth() + ", height: " + newBitmap.getHeight());
+                Log.d(TAG, "width: " + displayedBitmap.getWidth() + ", height: " + displayedBitmap.getHeight());
 
-                placeholder.setImageBitmap(newBitmap);
+                placeholder.setImageBitmap(displayedBitmap);
             }
 
             progressBar.setVisibility(View.GONE);
