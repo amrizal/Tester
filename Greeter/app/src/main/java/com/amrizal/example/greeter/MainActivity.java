@@ -1,5 +1,6 @@
 package com.amrizal.example.greeter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -63,5 +64,16 @@ public class MainActivity extends AppCompatActivity {
                 (TextView) findViewById(R.id.message_text_view);
 
         messageTextView.setText(greeting);
+    }
+
+    public void onSecondActivityClicked(View view){
+        EditText greetEditText =
+                (EditText) findViewById(R.id.greet_edit_text);
+
+        String name = greetEditText.getText().toString();
+
+        Intent intent = new Intent(this, SecondActivity.class);
+        intent.putExtra(SecondActivity.NAME, name);
+        startActivityForResult(intent, 0);
     }
 }

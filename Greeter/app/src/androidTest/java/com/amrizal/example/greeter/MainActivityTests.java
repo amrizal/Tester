@@ -45,5 +45,9 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
 
         String actualText = greetMessage.getText().toString();
         assertEquals("Hello, Jake!", actualText);
+
+        Button button = (Button) activity.findViewById(R.id.second_activity_button);
+        TouchUtils.clickView(this, button);
+
     }
 }
