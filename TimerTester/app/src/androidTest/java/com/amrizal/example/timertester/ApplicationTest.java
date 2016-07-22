@@ -1,4 +1,4 @@
-package com.checkinapp.checkin;
+package com.amrizal.example.timertester;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

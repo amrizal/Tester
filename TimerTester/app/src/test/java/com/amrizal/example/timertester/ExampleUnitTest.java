@@ -1,4 +1,4 @@
-package com.checkinapp.checkin;
+package com.amrizal.example.timertester;
 
 import org.junit.Test;
 

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TimerTester</string>
+    <string name="start">Start</string>
+    <string name="zero">0</string>
+</resources>
