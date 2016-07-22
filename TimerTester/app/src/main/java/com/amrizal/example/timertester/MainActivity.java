@@ -19,14 +19,13 @@ public class MainActivity extends AppCompatActivity {
     final Handler timer = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
-            int counter;
-            Bundle data = msg.getData();
             switch (msg.what){
                 case TIMER_1:
-                    counter = data.getInt(TIMER_1_VALUE, 0);
-                    onTimer1(counter);
+                    onTimer1(msg.arg1);
                     break;
                 case TIMER_2:
+                    int counter;
+                    Bundle data = msg.getData();
                     counter = data.getInt(TIMER_2_VALUE, 0);
                     onTimer2(counter);
                     break;
@@ -41,9 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private void onTimer1(int counter) {
         display1.setText(String.valueOf(counter));
         counter++;
-        Message message = timer.obtainMessage(TIMER_1);
-        Bundle data = message.getData();
-        data.putInt(TIMER_1_VALUE, counter);
+        Message message = timer.obtainMessage(TIMER_1, counter, 0);
         timer.sendMessageDelayed(message, TIMER_1_ELAPSE);
     }
 
