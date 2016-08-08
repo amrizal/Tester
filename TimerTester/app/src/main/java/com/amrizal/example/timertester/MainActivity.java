@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final int TIMER_1 = 1001;
@@ -62,6 +64,42 @@ public class MainActivity extends AppCompatActivity {
 
         onTimer1(0);
         onTimer2(0);
+
+        testThreads();
+    }
+
+    private void testThreads() {
+        final int[] arr = new int[100];
+        Thread one = new Thread() {
+            public void run() {
+                synchronized (arr) {
+                    for (int i = 0; i < arr.length * 100000; i++) {
+                        arr[i % arr.length]--;
+                    }
+                }
+            }
+        };
+        Thread two = new Thread() {
+            public void run() {
+                synchronized (arr) {
+                    for (int i = 0; i < arr.length * 100000; i++) {
+                        arr[i % arr.length]++;
+                    }
+                }
+            }
+        };
+        one.start();
+        two.start();
+        try {
+            one.join();
+            two.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]);
+        }
     }
 
     private void initView() {
