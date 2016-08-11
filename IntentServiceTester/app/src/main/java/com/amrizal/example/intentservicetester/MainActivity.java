@@ -35,9 +35,6 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.foo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                IntentFilter filter = new IntentFilter(MyConstants.FOO_EVENT);
-                LocalBroadcastManager.getInstance(view.getContext()).registerReceiver(receiver, filter);
-
                 String param1 = String.valueOf(((EditText)findViewById(R.id.param_1)).getText());
                 String param2 = String.valueOf(((EditText)findViewById(R.id.param_2)).getText());
 
@@ -48,9 +45,6 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.baz).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                IntentFilter filter = new IntentFilter(MyConstants.BAZ_EVENT);
-                LocalBroadcastManager.getInstance(view.getContext()).registerReceiver(receiver, filter);
-
                 String param1 = String.valueOf(((EditText)findViewById(R.id.param_1)).getText());
                 String param2 = String.valueOf(((EditText)findViewById(R.id.param_2)).getText());
 
@@ -62,6 +56,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        IntentFilter fooFilter = new IntentFilter(MyConstants.FOO_EVENT);
+        IntentFilter bazFilter = new IntentFilter(MyConstants.BAZ_EVENT);
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, fooFilter);
+        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, bazFilter);
     }
 
     @Override

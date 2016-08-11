@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Source codes\Tester\BottomTabsFragmentTabHost-master\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="cace46b51f81da28e1dbcfa98db88dfec77ac4ee">
+        <dex dex="C:\Source codes\Tester\BottomTabsFragmentTabHost-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_71b8d481ff9f113f11e63dcf6199b10f69e096af\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\amrizal.zainuddin\Android\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="C:\Source codes\Tester\BottomTabsFragmentTabHost-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-v4-18.0.0_636b75b4575c7601e3b4ec1855a28bbf78291d58\classes.dex" />
+    </item>
+    <item
+        jar="C:\Source codes\Tester\BottomTabsFragmentTabHost-master\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="1433850f555051b912229e68c92a829b3e957ff5">
+        <dex dex="C:\Source codes\Tester\BottomTabsFragmentTabHost-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_cb0159bcfb6a3622ed0ca7a09bc38b9a1bd692f7\classes.dex" />
+    </item>
+
+</items>
