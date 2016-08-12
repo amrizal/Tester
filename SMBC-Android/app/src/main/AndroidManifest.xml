@@ -2,6 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jp.co.smbc.gridbeacon">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="jp.co.smbc.gridbeacon.permission.C2D_MESSAGE" />
+
+    <permission
+        android:name="jp.co.smbc.gridbeacon.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
     <application
         android:name=".BeaconApplication"
         android:allowBackup="true"
@@ -15,6 +28,18 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".zxing.CaptureActivity"
+            android:clearTaskOnLaunch="false"
+            android:label="@string/scan_code"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="my.com.elock.grid.mybeacon.SCAN" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity

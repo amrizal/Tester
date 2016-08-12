@@ -1,6 +1,8 @@
 package jp.co.smbc.gridbeacon;
 
 import android.app.Application;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 
 /**
  * Created by amrizal.zainuddin on 12/8/2016.

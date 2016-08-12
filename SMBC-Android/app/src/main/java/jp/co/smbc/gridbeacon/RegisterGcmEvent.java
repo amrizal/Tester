@@ -30,14 +30,14 @@ public class RegisterGcmEvent {
         Intent intent = new Intent(eventName);
         intent.putExtra(BeaconConstants.EVENT_RESULT, BeaconConstants.EVENT_FAILED);
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (!BeaconUtility.isConnectedToInternet(cm)) {
+        if (!NetworkUtility.isConnectedToInternet(cm)) {
             intent.putExtra(BeaconConstants.FAILURE_MESSAGE, context.getString(R.string.no_internet_connection));
             LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
             return;
         }
 
         try {
-            token = InstanceID.getInstance(context).getToken(BeaconConstants.SENDER_ID, GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
+            token = InstanceID.getInstance(context).getToken(BeaconUtility.SENDER_ID, GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
             intent.putExtra(BeaconConstants.EVENT_RESULT, BeaconConstants.EVENT_SUCCESS);
             intent.putExtra(BeaconConstants.CLOUDID, token);
 

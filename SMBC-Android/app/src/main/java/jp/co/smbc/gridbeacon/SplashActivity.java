@@ -11,6 +11,7 @@ import android.os.Message;
 import android.preference.PreferenceManager;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Window;
 
@@ -81,7 +82,7 @@ public class SplashActivity extends Activity {
         cloudId = sharedPreferences.getString(BeaconConstants.CLOUDID, "");
 
         if(cloudId.isEmpty()){
-            BeaconService.registerGcm(this, BeaconConstants.SENDER_ID);
+            BeaconService.registerGcm(this, BeaconUtility.SENDER_ID);
             return;
         }else{
             //show for about 1 second

@@ -4,6 +4,8 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.content.Context;
 
+import jp.co.smbc.gridbeacon.zxing.CaptureActivity;
+
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
  * a service on a separate handler thread.
@@ -12,15 +14,18 @@ import android.content.Context;
  * helper methods.
  */
 public class BeaconService extends IntentService {
-    // TODO: Rename actions, choose action names that describe tasks that this
     // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
+    public static final String ACTION_PROCESS_QR_CONTENT = "jp.co.smbc.gridbeacon.action.PROCESS_QR_CONTENT";
     public static final String ACTION_REGISTER_GCM = "jp.co.smbc.gridbeacon.action.ACTION_REGISTER_GCM";
-    private static final String ACTION_BAZ = "jp.co.smbc.gridbeacon.action.BAZ";
+    public static final String ACTION_REGISTER_BEACON = "jp.co.smbc.gridbeacon.action.ACTION_REGISTER_BEACON";
 
-    // TODO: Rename parameters
-    private static final String EXTRA_PARAM1 = "jp.co.smbc.gridbeacon.extra.PARAM1";
-    private static final String EXTRA_PARAM2 = "jp.co.smbc.gridbeacon.extra.PARAM2";
+
     private static final String EXTRA_SENDERID = "jp.co.smbc.gridbeacon.extra.SENDERID";
+    private static final String EXTRA_GUID = "jp.co.smbc.gridbeacon.extra.GUID";
+    private static final String EXTRA_URL = "jp.co.smbc.gridbeacon.extra.URL";
+    private static final String EXTRA_VDID = "jp.co.smbc.gridbeacon.extra.VDID";
+    private static final String EXTRA_CLOUDID = "jp.co.smbc.gridbeacon.extra.CLOUDID";
+    private static final String EXTRA_QR_CONTENT = "jp.co.smbc.gridbeacon.extra.QR_CONTENT";
 
     public BeaconService() {
         super("BeaconService");
@@ -40,18 +45,20 @@ public class BeaconService extends IntentService {
         context.startService(intent);
     }
 
-    /**
-     * Starts this service to perform action Baz with the given parameters. If
-     * the service is already performing a task this action will be queued.
-     *
-     * @see IntentService
-     */
-    // TODO: Customize helper method
-    public static void startActionBaz(Context context, String param1, String param2) {
+    public static void processQrContent(Context context, String content) {
         Intent intent = new Intent(context, BeaconService.class);
-        intent.setAction(ACTION_BAZ);
-        intent.putExtra(EXTRA_PARAM1, param1);
-        intent.putExtra(EXTRA_PARAM2, param2);
+        intent.setAction(ACTION_PROCESS_QR_CONTENT);
+        intent.putExtra(EXTRA_QR_CONTENT, content);
+        context.startService(intent);
+    }
+
+    public static void registerBeacon(Context context, String gid, String vdid, String cloudid, String url) {
+        Intent intent = new Intent(context, BeaconService.class);
+        intent.setAction(ACTION_REGISTER_BEACON);
+        intent.putExtra(EXTRA_GUID, gid);
+        intent.putExtra(EXTRA_VDID, vdid);
+        intent.putExtra(EXTRA_CLOUDID, cloudid);
+        intent.putExtra(EXTRA_URL, url);
         context.startService(intent);
     }
 
@@ -63,24 +70,19 @@ public class BeaconService extends IntentService {
                 final String senderId = intent.getStringExtra(EXTRA_SENDERID);
                 RegisterGcmEvent event = new RegisterGcmEvent(this, ACTION_REGISTER_GCM, senderId);
                 event.handleEvent();
-            } else if (ACTION_BAZ.equals(action)) {
-                final String param1 = intent.getStringExtra(EXTRA_PARAM1);
-                final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                handleActionBaz(param1, param2);
+            }else if (ACTION_PROCESS_QR_CONTENT.equals(action)) {
+                final String content = intent.getStringExtra(EXTRA_QR_CONTENT);
+                ProcessQrContentEvent event = new ProcessQrContentEvent(this, ACTION_PROCESS_QR_CONTENT, content);
+                event.HandleEvent();
+            }else if(ACTION_REGISTER_BEACON.equals(action)){
+                final String gid = intent.getStringExtra(EXTRA_GUID);
+                final String url = intent.getStringExtra(EXTRA_URL);
+                final String vdid = intent.getStringExtra(EXTRA_VDID);
+                final String cloudid = intent.getStringExtra(EXTRA_CLOUDID);
+
+                RegisterBeaconEvent event = new RegisterBeaconEvent(this, ACTION_REGISTER_BEACON, gid, vdid, cloudid, url);
+                event.handleEvent();
             }
         }
-    }
-
-    private void handleActionFoo() {
-
-    }
-
-    /**
-     * Handle action Baz in the provided background thread with the provided
-     * parameters.
-     */
-    private void handleActionBaz(String param1, String param2) {
-        // TODO: Handle action Baz
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 }
