@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private static final String DESTINATION_PHONE_NUMBER = "+60193562080";
     EditText editText;
@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         editText = (EditText)findViewById(R.id.edit_text);
+
+        setupActionBar(getString(R.string.app_name));
     }
 
     public void onClick(View view){

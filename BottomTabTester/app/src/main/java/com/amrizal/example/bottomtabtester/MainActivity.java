@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private FragmentTabHost mTabHost;
 
@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
         // mTabHost = new FragmentTabHost(this);
         // mTabHost.setup(this, getSupportFragmentManager(),
         // R.id.menu_settings);
+        setupActionBar(getString(R.string.app_name));
+
         mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
 
