@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:padding="5dp"
+        android:gravity="left|center_vertical"
+        android:visibility="gone">
+
+        <ProgressBar
+            style="@android:style/Widget.DeviceDefault.ProgressBar.Large"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            />
+    </FrameLayout>
+
+    <ImageButton
+        android:id="@+id/refresh_button"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="left|center_vertical"
+        android:padding="8dp"
+        android:background="?attr/selectableItemBackground"
+        android:scaleType="centerInside"
+        android:src="@android:drawable/ic_popup_sync"
+        android:visibility="gone"/>
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="left|center_vertical"
+        android:gravity="left|center_vertical"
+        android:visibility="gone"
+        android:scaleType="centerInside"
+        android:src="@android:drawable/ic_btn_speak_now"
+        android:background="?attr/selectableItemBackground"
+        android:padding="8dp"
+        android:tint="@android:color/background_light"/>
+
+    <TextView
+        android:id="@+id/action_bar_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/actionbar_title"
+        android:textIsSelectable="false"
+        android:textSize="@dimen/actionbar_singleline_title"
+        android:visibility="visible"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        />
+
+    <ImageButton
+        android:id="@+id/setting_button"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="left|center_vertical"
+        android:gravity="left|center_vertical"
+        android:visibility="gone"
+        android:scaleType="centerInside"
+        android:src="@android:drawable/ic_menu_preferences"
+        android:background="?attr/selectableItemBackground"
+        android:padding="8dp"
+        />
+
+</RelativeLayout>
