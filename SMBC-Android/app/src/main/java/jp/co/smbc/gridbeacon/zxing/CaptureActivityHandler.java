@@ -103,7 +103,8 @@ public final class CaptureActivityHandler extends Handler {
             break;
         case R.id.return_scan_result:
 
-            int reqCode = activity.getIntent().getExtras().getInt(StringRes.ACTIVITY_KEY_REQUEST_CODE);
+
+            //int reqCode = activity.getIntent().getExtras().getInt(StringRes.ACTIVITY_KEY_REQUEST_CODE);
             Log.d(TAG, "Got return scan result message");
 
             final Intent intent1 = (Intent) message.obj;
@@ -112,11 +113,12 @@ public final class CaptureActivityHandler extends Handler {
             Log.d(TAG, "contents = " + contents);
             Log.d(TAG, "contents format = " + format);
 
-            switch (reqCode) {
+            /*switch (reqCode) {
             case IntegerRes.ACTIVITY_CODE_REG_QR:
                 activity.processScanResult(contents);
                 break;
-            }
+            }*/
+            activity.processScanResult(contents);
 
             break;
         case R.id.launch_product_query:

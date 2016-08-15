@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context="jp.co.smbc.gridbeacon.MainActivity"
     android:orientation="vertical" >
+
     <FrameLayout
         android:id="@+id/realtabcontent"
         android:layout_width="match_parent"
@@ -20,4 +21,11 @@
         android:layout_height="0dp"
         android:layout_weight="0" />
     </android.support.v4.app.FragmentTabHost>
+
+    <ImageView
+        android:id="@+id/cover"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@android:color/black"
+        android:visibility="gone"/>
 </LinearLayout>

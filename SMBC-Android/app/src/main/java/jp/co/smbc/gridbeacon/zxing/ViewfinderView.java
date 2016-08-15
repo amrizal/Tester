@@ -64,7 +64,8 @@ public final class ViewfinderView extends View {
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         Resources resources = getResources();
         //maskColor = resources.getColor(R.color.black);
-        maskColor = resources.getColor(R.color.viewfinder_mask);
+        maskColor = resources.getColor(android.R.color.transparent);
+        //maskColor = resources.getColor(R.color.viewfinder_mask);
         // resultColor = resources.getColor(R.color.result_view);
         resultColor = resources.getColor(android.R.color.black);
         laserColor = resources.getColor(R.color.viewfinder_laser);
@@ -163,19 +164,11 @@ public final class ViewfinderView extends View {
 
     public void drawViewfinderBorder(Canvas canvas, Rect frame) {
         int laserWeight = (int) (frame.width() * 0.02);
-        int laserLength = laserWeight * 5;
 
-        canvas.drawRect(frame.left, frame.top, frame.left + laserLength, frame.top + laserWeight, paint);//top-left bar
-        canvas.drawRect(frame.right - laserLength, frame.top, frame.right + 1, frame.top + laserWeight, paint);//top-right bar
-
-        canvas.drawRect(frame.left, frame.top + laserWeight, frame.left + laserWeight, frame.top + laserLength, paint);//left-top bar
-        canvas.drawRect(frame.left, frame.bottom - laserLength, frame.left + laserWeight, frame.bottom - laserWeight, paint);//left-bottom bar
-
-        canvas.drawRect(frame.left, frame.bottom - laserWeight, frame.left + laserLength, frame.bottom + 1, paint);//bottom-left bar
-        canvas.drawRect(frame.right - laserLength, frame.bottom - laserWeight, frame.right + 1, frame.bottom + 1, paint);//bottom-right bar
-
-        canvas.drawRect(frame.right - laserWeight, frame.top + laserWeight, frame.right + 1, frame.top + laserLength, paint);//right-top bar
-        canvas.drawRect(frame.right - laserWeight, frame.bottom - laserLength, frame.right + 1, frame.bottom - laserWeight, paint);//right-bottom bar
+        canvas.drawRect(frame.left, frame.top, frame.left + frame.width(), frame.top + laserWeight, paint);//top bar
+        canvas.drawRect(frame.left, frame.bottom - laserWeight, frame.right, frame.bottom, paint);//bottom bar
+        canvas.drawRect(frame.left, frame.top + laserWeight, frame.left + laserWeight, frame.bottom - laserWeight, paint);//left bar
+        canvas.drawRect(frame.right - laserWeight, frame.top + laserWeight, frame.right, frame.bottom - laserWeight, paint);//right bar
     }
 
     public void drawViewfinder() {

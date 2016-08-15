@@ -579,7 +579,8 @@ public final class CaptureActivity extends BaseActivity implements SurfaceHolder
     }
 
     private void startMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        Intent result = new Intent();
+        setResult(Activity.RESULT_OK, result);
+        finish();
     }
 }

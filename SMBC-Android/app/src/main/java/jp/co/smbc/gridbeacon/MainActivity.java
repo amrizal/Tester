@@ -1,6 +1,7 @@
 package jp.co.smbc.gridbeacon;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,12 +12,15 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTabHost;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import jp.co.smbc.gridbeacon.zxing.CaptureActivity;
+import jp.co.smbc.gridbeacon.zxing.Intents;
 
 public class MainActivity extends BaseActivity {
 
@@ -29,6 +33,8 @@ public class MainActivity extends BaseActivity {
     private String gridUrl;
     private String guid;
     private String hashSeed;
+    boolean showSplash = true;
+    private View cover;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,8 @@ public class MainActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
+        showViewCover();
+
         if(!checkPlayServices())
             return;
 
@@ -53,6 +61,33 @@ public class MainActivity extends BaseActivity {
 
         if(!checkBeaconRegistration())
             return;
+
+        hideViewCover();
+    }
+
+    private void hideViewCover() {
+        mTabHost.setVisibility(View.VISIBLE);
+        getSupportActionBar().show();
+        cover.setVisibility(View.GONE);
+    }
+
+    private void showViewCover() {
+        mTabHost.setVisibility(View.GONE);
+        getSupportActionBar().hide();
+        cover.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == Activity.RESULT_CANCELED){
+            if(requestCode == SplashActivity.SPLASH_ACTIVITY_CODE ||
+                    requestCode == IntegerRes.ACTIVITY_CODE_REG_QR){
+                //exit the app if the user press the back button while these activity are shown
+                finish();
+            }
+        }
     }
 
     /**
@@ -105,17 +140,29 @@ public class MainActivity extends BaseActivity {
     }
 
     private void showQrCodeActivity() {
-        Intent intent = new Intent(this, CaptureActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, CaptureActivity.class);
+        Intent intent = new Intent(Intents.Scan.ACTION);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra(StringRes.ZXING_KEY_SCAN_MODE, StringRes.ZXING_MODE_QR_CODE);
+        intent.putExtra(StringRes.ACTIVITY_KEY_REQUEST_CODE, IntegerRes.ACTIVITY_CODE_REG_QR);
+
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int height = displaymetrics.heightPixels;
+        int width = displaymetrics.widthPixels;
+
+        intent.putExtra(Intents.Scan.WIDTH, width * 5/7);
+        intent.putExtra(Intents.Scan.HEIGHT, width * 5/7);
+
+        startActivityForResult(intent, IntegerRes.ACTIVITY_CODE_REG_QR);
     }
 
     private boolean checkDisplaySplash() {
         cloudId = sharedPreferences.getString(BeaconConstants.CLOUDID, "");
         boolean registerGcm = cloudId.isEmpty();
 
-        //show splash screen if first start or register gcm
-        if(BeaconApplication.getInstance().isFirstStart() || registerGcm){
-            BeaconApplication.getInstance().setFirstStart(false);
+        if(registerGcm || showSplash ){
+            showSplash = false;
             showSplashActivity();
             return false;
         }
@@ -123,10 +170,14 @@ public class MainActivity extends BaseActivity {
         return true;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
     private void showSplashActivity() {
         Intent intent = new Intent(this, SplashActivity.class);
-        //BeaconApplication.getInstance().setFirstStart(false);
-        startActivity(intent);
+        startActivityForResult(intent, SplashActivity.SPLASH_ACTIVITY_CODE);
     }
 
     private void initView() {
@@ -137,18 +188,15 @@ public class MainActivity extends BaseActivity {
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
 
         Bundle b = new Bundle();
-        b.putString("key", "Simple");
-        mTabHost.addTab(mTabHost.newTabSpec("simple").setIndicator("Simple"),
+        b.putString("key", "Authentication");
+        mTabHost.addTab(mTabHost.newTabSpec("authentication").setIndicator(getString(R.string.tab_authentication)),
                 ItemFragment.class, b);
-        //
+
         b = new Bundle();
-        System.out.print("hello git");
-        b.putString("key", "Contacts");
-        mTabHost.addTab(mTabHost.newTabSpec("contacts")
-                .setIndicator("Contacts"), ItemFragment.class, b);
-        b = new Bundle();
-        b.putString("key", "Custom");
-        mTabHost.addTab(mTabHost.newTabSpec("custom").setIndicator("Custom"),
+        b.putString("key", "Configuration");
+        mTabHost.addTab(mTabHost.newTabSpec("configuration").setIndicator(getString(R.string.tab_configuration)),
                 ItemFragment.class, b);
+
+        cover = findViewById(R.id.cover);
     }
 }

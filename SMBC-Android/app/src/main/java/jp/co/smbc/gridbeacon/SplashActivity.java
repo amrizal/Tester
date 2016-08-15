@@ -14,12 +14,15 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Window;
+import android.view.WindowManager;
+import android.widget.TextView;
 
 public class SplashActivity extends Activity {
 
     private static final String TAG = SplashActivity.class.getSimpleName();
     private static final int MSG_SPLASH_TIMEOUT = 1001;
     private static final long SPLASH_TIMEOUT = 1000;//show for 1 second
+    public static final int SPLASH_ACTIVITY_CODE = 1002;
     // Set Duration of the Splash Screen=
     SharedPreferences sharedPreferences;
     private String cloudId;
@@ -33,7 +36,13 @@ public class SplashActivity extends Activity {
 
         // Remove the Title Bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_splash);
+
+        TextView textView = (TextView) findViewById(R.id.version);
+        textView.setText(BuildConfig.VERSION_NAME);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         initReceiver();
@@ -74,8 +83,11 @@ public class SplashActivity extends Activity {
     }
 
     private void startMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        Intent returnIntent = new Intent();
+        setResult(Activity.RESULT_OK,returnIntent);
+        finish();
+        // Intent intent = new Intent(this, MainActivity.class);
+        //startActivity(intent);
     }
 
     private void initGcm() {

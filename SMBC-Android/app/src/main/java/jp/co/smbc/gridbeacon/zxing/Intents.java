@@ -29,7 +29,7 @@ public final class Intents {
         /**
          * Send this intent to open the Barcodes app in scanning mode, find a barcode, and return the results.
          */
-        public static final String ACTION = "my.com.elock.grid.mybeacon.SCAN";
+        public static final String ACTION = "jp.co.smbc.gridbeacon.SCAN";
 
         /**
          * By default, sending this will decode all barcodes that we understand. However it may be useful to limit scanning to certain formats. Use
