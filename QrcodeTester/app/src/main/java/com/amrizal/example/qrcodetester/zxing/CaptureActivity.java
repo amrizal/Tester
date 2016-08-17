@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
 
+import com.amrizal.example.qrcodetester.BaseActivity;
 import com.amrizal.example.qrcodetester.R;
 import com.amrizal.example.qrcodetester.zxing.camera.CameraManager;
 import com.amrizal.example.qrcodetester.zxing.result.ResultHandler;
@@ -56,7 +57,7 @@ import com.google.zxing.ResultPoint;
  * @author dswitkin@google.com (Daniel Switkin)
  * @author Sean Owen
  */
-public final class CaptureActivity extends AppCompatActivity implements SurfaceHolder.Callback {
+public final class CaptureActivity extends BaseActivity implements SurfaceHolder.Callback {
 
     private static final String TAG = CaptureActivity.class.getSimpleName();
 
@@ -119,6 +120,7 @@ public final class CaptureActivity extends AppCompatActivity implements SurfaceH
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         cameraManager = new CameraManager(getApplication());
         // showHelpOnFirstLaunch();
+        setupActionBar(String.valueOf(getTitle()));
     }
 
     @Override
@@ -512,5 +514,7 @@ public final class CaptureActivity extends AppCompatActivity implements SurfaceH
         Log.d(TAG, "running drawViewfinder()...");
         viewfinderView.drawViewfinder();
     }
+
+
 
 }

@@ -8,4 +8,6 @@
     <color name="viewfinder_mask">#60000000</color>
     <color name="viewfinder_laser">#0d3260</color>
     <color name="possible_result_points">#c0ffff00</color>
+    <color name="actionbar_title">@android:color/darker_gray</color>
+    <color name="actionbar_background">@android:color/white</color>
 </resources>

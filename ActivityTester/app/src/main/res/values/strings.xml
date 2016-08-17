@@ -3,4 +3,8 @@
     <string name="share_text">Share Text</string>
     <string name="sms_text">Sms Text</string>
     <string name="whatsapp_text">Whatsapp Text</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
