@@ -1,6 +1,7 @@
 package com.amrizal.example.volleytester;
 
 import android.app.ProgressDialog;
+import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -171,6 +172,48 @@ public class MainActivity extends AppCompatActivity {
 // Adding request to request queue
         //Volley.newRequestQueue(this).add(postRequest);
         AppController.getInstance().addToRequestQueue(postRequest, tag_json_post);
+    }
+
+    public void getDistance(View view){
+        // Tag used to cancel the request
+        String tag_json_distance = "json_get_distance";
+
+        double currentLatitude = 3.156361;
+        double currentLongitude = 101.710930;
+        double destinationLatitude = 3.156687;
+        double destinationLongitude = 101.710420;
+
+        StringBuffer url = new StringBuffer();
+        url.append("http://maps.googleapis.com/maps/api/directions/json?origin=");
+        url.append(currentLatitude);
+        url.append("," + currentLongitude);
+        url.append("&destination=" + destinationLatitude);
+        url.append("," + destinationLongitude);
+
+        final ProgressDialog pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Loading...");
+        pDialog.show();
+
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST,
+                url.toString(), null,
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, response.toString());
+                        pDialog.hide();
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                pDialog.hide();
+            }
+        });
+
+// Adding request to request queue
+        AppController.getInstance().addToRequestQueue(req, tag_json_distance);
     }
 
     public void headerRequest(View view){
