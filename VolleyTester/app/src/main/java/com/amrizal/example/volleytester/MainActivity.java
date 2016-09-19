@@ -37,26 +37,7 @@ public class MainActivity extends AppCompatActivity {
         textResult = (TextView)findViewById(R.id.text_result);
     }
 
-    void onClick(View view){
-        switch (view.getId()){
-            case R.id.jsonObjectRequest:
-                jsonObjectRequest();
-                break;
-            case R.id.jsonArrayRequest:
-                jsonArrayRequest();
-                break;
-            case R.id.stringRequest:
-                stringRequest();
-                break;
-            case R.id.postRequest:
-                postRequest();
-                break;
-            default:
-                break;
-        }
-    }
-
-    void jsonObjectRequest(){
+    public void jsonObjectRequest(View view){
         // Tag used to cancel the request
         String tag_json_obj = "json_obj_req";
 
@@ -89,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
     }
 
-    void jsonArrayRequest(){
+    public void jsonArrayRequest(View view){
         // Tag used to cancel the request
         String tag_json_arry = "json_array_req";
 
@@ -118,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(req, tag_json_arry);
     }
 
-    void stringRequest(){
+    public void stringRequest(View view){
         // Tag used to cancel the request
         String  tag_string_req = "string_req";
 
@@ -150,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
-    void postRequest(){
+    public void postRequest(View view){
         // Tag used to cancel the request
         String tag_json_post = "json_obj_post";
 
@@ -192,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(postRequest, tag_json_post);
     }
 
-    void headerRequest(){
+    public void headerRequest(View view){
         // Tag used to cancel the request
         String tag_json_obj = "json_obj_req";
 

@@ -17,31 +17,31 @@
             android:id="@+id/text_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!" />
+            android:text="Result" />
         <Button
             android:text="JSON Object Request"
             android:id="@+id/jsonObjectRequest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onClick"/>
+            android:onClick="jsonObjectRequest"/>
         <Button
             android:text="JSON Array Request"
             android:id="@+id/jsonArrayRequest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onClick"/>
+            android:onClick="jsonArrayRequest"/>
         <Button
             android:text="String Request"
             android:id="@+id/stringRequest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onClick"/>
+            android:onClick="stringRequest"/>
         <Button
             android:text="Post Request"
             android:id="@+id/postRequest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onClick"/>
+            android:onClick="postRequest"/>
     </LinearLayout>
 
 </RelativeLayout>
