@@ -1,0 +1,620 @@
+[
+    {
+        "outputFile": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\build\\intermediates\\res\\merged\\debug\\values\\values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 57,
+                    "endOffset": 108
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 89,
+                        "endColumn": 57,
+                        "endOffset": 142
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 113,
+                    "endColumn": 55,
+                    "endOffset": 164
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 147,
+                        "endColumn": 55,
+                        "endOffset": 198
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 169,
+                    "endColumn": 38,
+                    "endOffset": 203
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\ids.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 57,
+                        "endLine": 4,
+                        "endColumn": 27,
+                        "endOffset": 110
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 208,
+                    "endColumn": 83,
+                    "endOffset": 287
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 983,
+                        "endColumn": 83,
+                        "endOffset": 1062
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 292,
+                    "endColumn": 72,
+                    "endOffset": 360
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 1133,
+                        "endColumn": 72,
+                        "endOffset": 1201
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 365,
+                    "endColumn": 82,
+                    "endOffset": 443
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 835,
+                        "endColumn": 82,
+                        "endOffset": 913
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 448,
+                    "endColumn": 79,
+                    "endOffset": 523
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 578,
+                        "endColumn": 79,
+                        "endOffset": 653
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 528,
+                    "endColumn": 73,
+                    "endOffset": 597
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 658,
+                        "endColumn": 73,
+                        "endOffset": 727
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 602,
+                    "endColumn": 102,
+                    "endOffset": 700
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 732,
+                        "endColumn": 102,
+                        "endOffset": 830
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 705,
+                    "endColumn": 79,
+                    "endOffset": 780
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 498,
+                        "endColumn": 79,
+                        "endOffset": 573
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 785,
+                    "endColumn": 64,
+                    "endOffset": 845
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 918,
+                        "endColumn": 64,
+                        "endOffset": 978
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 850,
+                    "endColumn": 73,
+                    "endOffset": 919
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 269,
+                        "endColumn": 73,
+                        "endOffset": 338
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 924,
+                    "endColumn": 70,
+                    "endOffset": 990
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 343,
+                        "endColumn": 70,
+                        "endOffset": 409
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 15,
+                    "startColumn": 4,
+                    "startOffset": 995,
+                    "endColumn": 73,
+                    "endOffset": 1064
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 195,
+                        "endColumn": 73,
+                        "endOffset": 264
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 1069,
+                    "endColumn": 99,
+                    "endOffset": 1164
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 31,
+                        "startColumn": 4,
+                        "startOffset": 1996,
+                        "endColumn": 99,
+                        "endOffset": 2091
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 17,
+                    "startColumn": 4,
+                    "startOffset": 1169,
+                    "endColumn": 73,
+                    "endOffset": 1238
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 30,
+                        "startColumn": 4,
+                        "startOffset": 1922,
+                        "endColumn": 73,
+                        "endOffset": 1991
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 18,
+                    "startColumn": 4,
+                    "startOffset": 1243,
+                    "endColumn": 77,
+                    "endOffset": 1316
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 117,
+                        "endColumn": 77,
+                        "endOffset": 190
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 19,
+                    "startColumn": 4,
+                    "startOffset": 1321,
+                    "endColumn": 89,
+                    "endOffset": 1406
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 1206,
+                        "endColumn": 89,
+                        "endOffset": 1291
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 1411,
+                    "endColumn": 60,
+                    "endOffset": 1467
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 27,
+                        "startColumn": 4,
+                        "startOffset": 1747,
+                        "endColumn": 60,
+                        "endOffset": 1803
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 21,
+                    "startColumn": 4,
+                    "startOffset": 1472,
+                    "endColumn": 60,
+                    "endOffset": 1528
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 28,
+                        "startColumn": 4,
+                        "startOffset": 1808,
+                        "endColumn": 60,
+                        "endOffset": 1864
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 1533,
+                    "endColumn": 52,
+                    "endOffset": 1581
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 29,
+                        "startColumn": 4,
+                        "startOffset": 1869,
+                        "endColumn": 52,
+                        "endOffset": 1917
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 23,
+                    "startColumn": 4,
+                    "startOffset": 1586,
+                    "endColumn": 67,
+                    "endOffset": 1649
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 24,
+                        "startColumn": 4,
+                        "startOffset": 1527,
+                        "endColumn": 67,
+                        "endOffset": 1590
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 24,
+                    "startColumn": 4,
+                    "startOffset": 1654,
+                    "endColumn": 81,
+                    "endOffset": 1731
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 4,
+                        "startOffset": 1665,
+                        "endColumn": 81,
+                        "endOffset": 1742
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 25,
+                    "startColumn": 4,
+                    "startOffset": 1736,
+                    "endColumn": 69,
+                    "endOffset": 1801
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 25,
+                        "startColumn": 4,
+                        "startOffset": 1595,
+                        "endColumn": 69,
+                        "endOffset": 1660
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 26,
+                    "startColumn": 4,
+                    "startOffset": 1806,
+                    "endColumn": 83,
+                    "endOffset": 1885
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 414,
+                        "endColumn": 83,
+                        "endOffset": 493
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 27,
+                    "startColumn": 4,
+                    "startOffset": 1890,
+                    "endColumn": 65,
+                    "endOffset": 1951
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 1067,
+                        "endColumn": 65,
+                        "endOffset": 1128
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 28,
+                    "startColumn": 4,
+                    "startOffset": 1956,
+                    "endColumn": 75,
+                    "endOffset": 2027
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 1301,
+                        "endColumn": 75,
+                        "endOffset": 1372
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 29,
+                    "startColumn": 4,
+                    "startOffset": 2032,
+                    "endColumn": 77,
+                    "endOffset": 2105
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 1377,
+                        "endColumn": 77,
+                        "endOffset": 1450
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 30,
+                    "startColumn": 4,
+                    "startOffset": 2110,
+                    "endColumn": 66,
+                    "endOffset": 2172
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 1455,
+                        "endColumn": 66,
+                        "endOffset": 1517
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 31,
+                    "startColumn": 4,
+                    "startOffset": 2177,
+                    "endColumn": 60,
+                    "endOffset": 2233
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 56,
+                        "endColumn": 60,
+                        "endOffset": 112
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 32,
+                    "startColumn": 4,
+                    "startOffset": 2238,
+                    "endLine": 38,
+                    "endColumn": 12,
+                    "endOffset": 2524
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\styles.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 186,
+                        "endLine": 12,
+                        "endColumn": 12,
+                        "endOffset": 472
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 39,
+                    "startColumn": 4,
+                    "startOffset": 2529,
+                    "endLine": 41,
+                    "endColumn": 12,
+                    "endOffset": 2684
+                },
+                "from": {
+                    "file": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\values\\styles.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 510,
+                        "endLine": 17,
+                        "endColumn": 12,
+                        "endOffset": 665
+                    }
+                }
+            }
+        ]
+    }
+]

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Source codes\Tester\android_volley_examples-master\app\libs\khandroid-httpclient-4.2.3.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="833efd491363b9391340d073bff8d95c85ff7733">
+        <dex dex="C:\Source codes\Tester\android_volley_examples-master\app\build\intermediates\transforms\dex\debug\folders\1000\2\khandroid-httpclient-4.2.3_5b4e9212dce05dc09d0c6a45714432acbbb71851\classes.dex" />
+    </item>
+    <item
+        jar="C:\Source codes\Tester\android_volley_examples-master\app\build\intermediates\exploded-aar\com.android.volley\volley\1.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
+        <dex dex="C:\Source codes\Tester\android_volley_examples-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.volley-volley-1.0.0_2f6796ef10eddabb170e326b2076e86a3e269d33\classes.dex" />
+    </item>
+    <item
+        jar="C:\Source codes\Tester\android_volley_examples-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="C:\Source codes\Tester\android_volley_examples-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_506e99fcb74b76592465d29f4a789d263eb0f70c\classes.dex" />
+    </item>
+    <item
+        jar="C:\Source codes\Tester\android_volley_examples-master\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="caf6d7c3af90325d15408010852af80eefe147bf">
+        <dex dex="C:\Source codes\Tester\android_volley_examples-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_d3ce041b0924f8deb664bc260f36b069e9739284\classes.dex" />
+    </item>
+    <item
+        jar="C:\Source codes\Tester\android_volley_examples-master\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="14a3d630e8abd21a0fa22c7cae03455194fdf20b">
+        <dex dex="C:\Source codes\Tester\android_volley_examples-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_462ec19c8c4c7840fe9c35c2d506e82666fe3906\classes.dex" />
+    </item>
+    <item
+        jar="C:\Program Files\Android\Android Studio\gradle\m2repository\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="C:\Source codes\Tester\android_volley_examples-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.2.4_313aff129984a0a45e086871ec03bfcc02e7284e\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\amrizal.zainuddin\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="C:\Source codes\Tester\android_volley_examples-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_edd5e7308290cf86dcdc28aea19d2e4f1e16861f\classes.dex" />
+    </item>
+    <item
+        jar="C:\Source codes\Tester\android_volley_examples-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="C:\Source codes\Tester\android_volley_examples-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.4.0_05879147aecf8493dd1b71f8629b042f63beaa11\classes.dex" />
+    </item>
+
+</items>

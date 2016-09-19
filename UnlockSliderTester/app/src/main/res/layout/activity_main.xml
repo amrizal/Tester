@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="Hello World!" />
 
-    <com.amrizal.example.unlockslidertester.SlideButton
+    <!--<com.amrizal.example.unlockslidertester.SlideButton
         android:id="@+id/unlockButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,6 +30,23 @@
         android:maxWidth="200dp"
         android:minWidth="200dp"
         android:splitTrack="false">
+    </com.amrizal.example.unlockslidertester.SlideButton>-->
+    <com.amrizal.example.unlockslidertester.SlideButton
+        android:id="@+id/unlockButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progressDrawable="@drawable/slidetounlock_progress"
+        android:background="@android:color/transparent"
+        android:clickable="false"
+        android:max="100"
+        android:minHeight="@dimen/slider_height"
+        android:maxHeight="@dimen/slider_height"
+        android:minWidth="@dimen/slider_width"
+        android:maxWidth="@dimen/slider_width"
+        android:paddingStart="100dp"
+        android:paddingEnd="100dp"
+        android:splitTrack="false"
+        android:thumb="@drawable/forward_thumb_image">
     </com.amrizal.example.unlockslidertester.SlideButton>
 
 </RelativeLayout>

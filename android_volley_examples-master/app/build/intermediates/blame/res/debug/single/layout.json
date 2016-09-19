@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act__new_http_client.xml",
+        "source": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\layout\\act__new_http_client.xml"
+    },
+    {
+        "merged": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act__simple_request.xml",
+        "source": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\layout\\act__simple_request.xml"
+    },
+    {
+        "merged": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act__main.xml",
+        "source": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\layout\\act__main.xml"
+    },
+    {
+        "merged": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\build\\intermediates\\res\\merged\\debug\\layout\\lv_picasa_row.xml",
+        "source": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\layout\\lv_picasa_row.xml"
+    },
+    {
+        "merged": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act__params.xml",
+        "source": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\layout\\act__params.xml"
+    },
+    {
+        "merged": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act__ss_ssl_http_client.xml",
+        "source": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\layout\\act__ss_ssl_http_client.xml"
+    },
+    {
+        "merged": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act__gson_request.xml",
+        "source": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\layout\\act__gson_request.xml"
+    },
+    {
+        "merged": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act__network_list_view.xml",
+        "source": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\layout\\act__network_list_view.xml"
+    },
+    {
+        "merged": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act__json_request.xml",
+        "source": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\layout\\act__json_request.xml"
+    },
+    {
+        "merged": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act__cookie.xml",
+        "source": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\layout\\act__cookie.xml"
+    },
+    {
+        "merged": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act__image_loading.xml",
+        "source": "C:\\Source codes\\Tester\\android_volley_examples-master\\app\\src\\main\\res\\layout\\act__image_loading.xml"
+    }
+]

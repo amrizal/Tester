@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeData() {
-        for(int i=0; i<10; i++){
+        for(int i=0; i<2; i++){
             Document document = new Document();
             int id = i+1;
             document.setId(id);
