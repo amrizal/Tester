@@ -40,22 +40,23 @@ public class MyApplication extends Application {
         ActivityLifecycleCallbacks callbacks = new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle bundle) {
-
+                Log.d(TAG, "onActivityCreated=" + activity.getLocalClassName());
             }
 
             @Override
             public void onActivityStarted(Activity activity) {
+                Log.d(TAG, "onActivityStarted=" + activity.getLocalClassName());
                 activityCount++;
             }
 
             @Override
             public void onActivityResumed(Activity activity) {
-
+                Log.d(TAG, "onActivityResumed=" + activity.getLocalClassName());
             }
 
             @Override
             public void onActivityPaused(Activity activity) {
-
+                Log.d(TAG, "onActivityPaused=" + activity.getLocalClassName());
             }
 
             @Override
@@ -71,12 +72,12 @@ public class MyApplication extends Application {
 
             @Override
             public void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
-
+                Log.d(TAG, "onActivitySaveInstanceState=" + activity.getLocalClassName());
             }
 
             @Override
             public void onActivityDestroyed(Activity activity) {
-
+                Log.d(TAG, "onActivityDestroyed=" + activity.getLocalClassName());
             }
         };
         registerActivityLifecycleCallbacks(callbacks);
