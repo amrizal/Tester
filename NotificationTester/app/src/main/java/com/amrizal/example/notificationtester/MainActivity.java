@@ -3,13 +3,25 @@ package com.amrizal.example.notificationtester;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+
+import com.google.firebase.iid.FirebaseInstanceId;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,17 +35,67 @@ public class MainActivity extends AppCompatActivity {
     private static final int TRX_NOTI_ID_SECOND = 1;
     private static final int TRX_NOTI_ID_THIRD = 2;
     private static final int TRX_NOTI_ID_DISMISS = 3;
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private String cloudid;
+
+    BroadcastReceiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
+
+        initCloudMessaging();
+        initReceiver();
+        processIntent();
+    }
+
+    private void initCloudMessaging() {
+        String cloudid = FirebaseInstanceId.getInstance().getToken();
+        updateCloudId(cloudid);
+    }
+
+    void updateCloudId(String cloudid){
+        this.cloudid = cloudid;
+        TextView textView = (TextView) findViewById(R.id.cloud_id);
+        textView.setText(cloudid);
+
+        Log.d(TAG, "cloudId=" + cloudid);
+    }
+
+    private void initReceiver() {
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+                switch (action){
+                    case ACTION.FIREBASE_TOKEN_UPDATED:
+                        onCloudRefreshed(intent);
+                    default:
+                        break;
+                }
+            }
+        };
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
+    }
+
+    private void onCloudRefreshed(Intent intent) {
+        String cloudid = intent.getStringExtra(EXTRA.CLOUD_TOKEN);
+        updateCloudId(cloudid);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        processIntent();
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ACTION.FIREBASE_TOKEN_UPDATED);
+        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, intentFilter);
     }
 
     private void processIntent() {
@@ -56,6 +118,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         setContentView(R.layout.activity_main);
+
+        String dateFormat = String.format("yyyy-MM-dd hh:mm:ss aa");
+
+        Date date = new Date(System.currentTimeMillis());
+        DateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+        formatter.setTimeZone(TimeZone.getDefault());
+        String dateString = new SimpleDateFormat(dateFormat).format(date);
+        ((TextView)findViewById(R.id.creation_time)).setText(dateString);
     }
 
     public void showNotification(View view){
