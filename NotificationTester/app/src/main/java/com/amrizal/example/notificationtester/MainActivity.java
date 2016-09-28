@@ -126,6 +126,14 @@ public class MainActivity extends AppCompatActivity {
         formatter.setTimeZone(TimeZone.getDefault());
         String dateString = new SimpleDateFormat(dateFormat).format(date);
         ((TextView)findViewById(R.id.creation_time)).setText(dateString);
+
+        findViewById(R.id.show_second).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), SecondActivity.class);
+                startActivityForResult(intent, REQUEST.SECOND_ACTIVITY);
+            }
+        });
     }
 
     public void showNotification(View view){
@@ -192,5 +200,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void showRestoredNotification(View view){
 
+    }
+
+    private class REQUEST {
+        public static final int SECOND_ACTIVITY = 1000;
     }
 }

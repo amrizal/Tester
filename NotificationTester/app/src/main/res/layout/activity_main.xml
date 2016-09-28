@@ -34,6 +34,12 @@
         android:layout_height="wrap_content"
         android:onClick="showRestoredNotification"/>
 
+    <Button
+        android:id="@+id/show_second"
+        android:text="Show second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/cloud_id"
         android:layout_width="wrap_content"
