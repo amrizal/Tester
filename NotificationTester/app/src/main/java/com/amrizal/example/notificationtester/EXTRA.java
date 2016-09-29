@@ -5,4 +5,5 @@ package com.amrizal.example.notificationtester;
  */
 public class EXTRA {
     public static final String CLOUD_TOKEN = "cloud_token";
+    public static final String IS_BACK_BUTTON = "back_button";
 }

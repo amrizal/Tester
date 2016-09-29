@@ -131,9 +131,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(), SecondActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivityForResult(intent, REQUEST.SECOND_ACTIVITY);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d(TAG, "onActivityResult-" + requestCode + ", " + resultCode);
+        if(data != null){
+            Log.d(TAG, "backbutton-" + data.getBooleanExtra(EXTRA.IS_BACK_BUTTON, false));
+        }
     }
 
     public void showNotification(View view){
