@@ -1,5 +1,6 @@
 package com.stationalertapp.malaysia.activitytester;
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,7 +32,8 @@ public class MainActivity extends BaseActivity {
 
         setupActionBar(getString(R.string.app_name));
 
-        test();
+        /* This is the important part */
+        startService(new Intent(MyService.class.getName()));
     }
 
     private void test() {
@@ -70,9 +72,19 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.whatsapp_text:
                 whatsappText();
+                break;
+            case R.id.check_screen:
+                checkScreen();
+                break;
             default:
                 break;
         }
+    }
+
+    private void checkScreen() {
+        Intent intent = new Intent(this, MyIntentService.class);
+        intent.putExtra(MyIntentService.DELAY, 30000L);//wait for 30s
+        startService(intent);
     }
 
     private void whatsappText() {
@@ -123,5 +135,9 @@ public class MainActivity extends BaseActivity {
         public TestClass(String s) {
             this.s = s;
         }
+    }
+
+    private class RESULT {
+        public static final int CHECK_SCREEN = 1000;
     }
 }

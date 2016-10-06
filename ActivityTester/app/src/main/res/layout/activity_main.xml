@@ -42,6 +42,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"/>
+        <Button
+            android:id="@+id/check_screen"
+            android:text="Check Screen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"/>
     </LinearLayout>
 
 </FrameLayout>
