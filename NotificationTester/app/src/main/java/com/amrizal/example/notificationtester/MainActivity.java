@@ -16,11 +16,22 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.amrizal.example.notificationtester.model.CloudMessage;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.gson.Gson;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private String cloudid;
 
     BroadcastReceiver receiver;
+    private Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        Log.d(TAG, "onResume");
+
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ACTION.FIREBASE_TOKEN_UPDATED);
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver, intentFilter);
@@ -146,7 +160,46 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showNotification(View view){
-        showDefaultNotification();
+        sendNotificationRequest();
+    }
+
+    private void sendNotificationRequest() {
+        String url = "https://fcm.googleapis.com/fcm/send";
+
+        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                gson = new Gson();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e(TAG, volleyError.getLocalizedMessage());
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                headers.put("Authorization", "key=AIzaSyBfCZadqstYZKz2n370UPAXUCbmXV2_UMU");
+                return headers;
+            }
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                CloudMessage cloudMessage = new CloudMessage();
+                cloudMessage.setTo(cloudid);
+                cloudMessage.setData("score", "5x1");
+                cloudMessage.setData("time", "15:10");
+
+                gson = new Gson();
+                String body = gson.toJson(cloudMessage);
+                return body.getBytes();
+            }
+        };
+
+        RequestQueue rQueue = Volley.newRequestQueue(this);
+        rQueue.add(request);
     }
 
     private void showDefaultNotification() {

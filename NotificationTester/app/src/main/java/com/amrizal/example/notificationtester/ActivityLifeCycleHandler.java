@@ -19,8 +19,8 @@ public class ActivityLifeCycleHandler implements Application.ActivityLifecycleCa
 
     @Override
     public void onActivityStarted(Activity activity) {
-        Log.d(TAG, "onActivityStarted-" + activity.getLocalClassName());
-        NotificationApplication.getInstance().setLastActiveActivity(activity);
+        NotificationApplication.getInstance().setLastLocalClassName(activity.getLocalClassName());
+        activity.getLocalClassName();
     }
 
     @Override
@@ -45,7 +45,6 @@ public class ActivityLifeCycleHandler implements Application.ActivityLifecycleCa
 
     @Override
     public void onActivityDestroyed(Activity activity) {
-        NotificationApplication.getInstance().setLastActiveActivity(null);
         Log.d(TAG, "onActivityDestroyed-" + activity.getLocalClassName());
     }
 }

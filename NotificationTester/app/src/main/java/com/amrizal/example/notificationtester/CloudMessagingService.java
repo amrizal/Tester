@@ -3,6 +3,7 @@ package com.amrizal.example.notificationtester;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
@@ -47,9 +48,14 @@ public class CloudMessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationCompat.Builder builder =  new NotificationCompat.Builder(context);
 
-        Intent pIntent = new Intent(context, MainActivity.class);
+        String packageName = NotificationApplication.getInstance().getPackageName();
+        String lastLocalClassName = NotificationApplication.getInstance().getLastLocalClassName();
+        Intent pIntent = new Intent();
+        pIntent.setComponent(new ComponentName(packageName, packageName + "." + lastLocalClassName));
+        //Intent pIntent = new Intent(context, MainActivity.class);
+        pIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         //pIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-        pIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        //pIntent.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
 
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, pIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 

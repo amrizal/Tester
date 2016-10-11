@@ -8,19 +8,20 @@ import android.app.Application;
  */
 public class NotificationApplication extends Application {
     static  NotificationApplication instance;
-    Activity lastActiveActivity;
-
-    public Activity getLastActiveActivity() {
-        return lastActiveActivity;
-    }
-
-    public void setLastActiveActivity(Activity lastActiveActivity) {
-        this.lastActiveActivity = lastActiveActivity;
-    }
 
     public static synchronized NotificationApplication getInstance(){
         return instance;
     }
+
+    public String getLastLocalClassName() {
+        return lastLocalClassName;
+    }
+
+    public void setLastLocalClassName(String lastLocalClassName) {
+        this.lastLocalClassName = lastLocalClassName;
+    }
+
+    private String lastLocalClassName;
 
     @Override
     public void onCreate() {
