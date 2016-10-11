@@ -10,11 +10,17 @@
     android:orientation="vertical"
     tools:context="com.amrizal.example.notificationtester.MainActivity">
     <Button
-        android:id="@+id/show_notification"
-        android:text="Show notification"
+        android:id="@+id/send_notification"
+        android:text="Send notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="showNotification"/>
+        android:onClick="sendNotification"/>
+    <Button
+        android:id="@+id/send_topic_notification"
+        android:text="Send topic notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="sendTopicNotification"/>
     <Button
         android:id="@+id/show_delayed_notification"
         android:text="Show delayed notification"

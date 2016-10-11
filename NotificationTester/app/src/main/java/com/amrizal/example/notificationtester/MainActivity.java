@@ -25,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 
 import java.text.DateFormat;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int TRX_NOTI_ID_THIRD = 2;
     private static final int TRX_NOTI_ID_DISMISS = 3;
     private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TOPIC_NEWS = "news";
     private String cloudid;
 
     BroadcastReceiver receiver;
@@ -65,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
     private void initCloudMessaging() {
         String cloudid = FirebaseInstanceId.getInstance().getToken();
         updateCloudId(cloudid);
+
+        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC_NEWS);
     }
 
     void updateCloudId(String cloudid){
@@ -82,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 String action = intent.getAction();
                 switch (action){
                     case ACTION.FIREBASE_TOKEN_UPDATED:
-                        onCloudRefreshed(intent);
+                        initCloudMessaging();
                     default:
                         break;
                 }
@@ -94,11 +98,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
-    }
-
-    private void onCloudRefreshed(Intent intent) {
-        String cloudid = intent.getStringExtra(EXTRA.CLOUD_TOKEN);
-        updateCloudId(cloudid);
     }
 
     @Override
@@ -159,11 +158,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void showNotification(View view){
-        sendNotificationRequest();
+    public void sendNotification(View view){
+        sendNotificationRequest(cloudid);
     }
 
-    private void sendNotificationRequest() {
+    public void sendTopicNotification(View view){
+        sendNotificationRequest("/topics/" + TOPIC_NEWS);
+    }
+
+    private void sendNotificationRequest(final String to) {
         String url = "https://fcm.googleapis.com/fcm/send";
 
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -188,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public byte[] getBody() throws AuthFailureError {
                 CloudMessage cloudMessage = new CloudMessage();
-                cloudMessage.setTo(cloudid);
+                cloudMessage.setTo(to);
                 cloudMessage.setData("score", "5x1");
                 cloudMessage.setData("time", "15:10");
 
