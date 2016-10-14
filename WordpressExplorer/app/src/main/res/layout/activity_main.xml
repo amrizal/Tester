@@ -9,7 +9,7 @@
     <EditText
         android:id="@+id/target_site"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/show_site"
         android:text="@string/show_site"

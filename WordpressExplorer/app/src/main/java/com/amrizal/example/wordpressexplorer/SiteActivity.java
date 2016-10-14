@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -34,6 +35,10 @@ public class SiteActivity extends AppCompatActivity {
     int postID;
     String postTitle[];
     private String siteUrl;
+    private String siteUsername = "test_admin";
+    private String sitePassword = "DVeaav8f42Orh7IgvC";
+    private EditText username;
+    private EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +70,41 @@ public class SiteActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST.POST_ACTIVITY);
             }
         });
+
+        siteUsername = getIntent().getStringExtra(EXTRA.USERNAME);
+        username = (EditText)findViewById(R.id.username);
+        username.setText(siteUsername);
+
+        sitePassword = getIntent().getStringExtra(EXTRA.PASSWORD);
+        password = (EditText)findViewById(R.id.password);
+        password.setText(sitePassword);
+
+        findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String uname = String.valueOf(username.getText());
+                String pword = String.valueOf(password.getText());
+                loginToSite(siteUrl, uname, pword);
+            }
+        });
+    }
+
+    private void loginToSite(final String url, final String username, final String password) {
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == Activity.RESULT_CANCELED){
+            if(data != null){
+                String errorMessage = data.getStringExtra(EXTRA.ERROR_MESSAGE);
+                if(errorMessage != null && !errorMessage.isEmpty()){
+                    errorMessage = getString(R.string.error);
+                }
+                Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     private void getPostList(final String url) {
@@ -88,8 +128,9 @@ public class SiteActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(SiteActivity.this, "Some error occurred", Toast.LENGTH_LONG).show();
-                setResult(Activity.RESULT_CANCELED);
+                Intent intent = new Intent();
+                intent.putExtra(EXTRA.ERROR_MESSAGE, volleyError.getLocalizedMessage());
+                setResult(Activity.RESULT_CANCELED, intent);
                 finish();
             }
         });

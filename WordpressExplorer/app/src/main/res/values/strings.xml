@@ -3,4 +3,8 @@
     <string name="title_activity_post">PostActivity</string>
     <string name="show_site">Show site</string>
     <string name="title_activity_site">Site</string>
+    <string name="error">Error</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
 </resources>

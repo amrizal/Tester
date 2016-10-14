@@ -2,6 +2,7 @@ package com.amrizal.example.wordpressexplorer;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -66,8 +67,9 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 progressDialog.dismiss();
-                Toast.makeText(PostActivity.this, id, Toast.LENGTH_LONG).show();
-                setResult(Activity.RESULT_CANCELED);
+                Intent intent = new Intent();
+                intent.putExtra(EXTRA.ERROR_MESSAGE, volleyError.getLocalizedMessage());
+                setResult(Activity.RESULT_CANCELED, intent);
                 finish();
             }
         });
