@@ -16,4 +16,8 @@
                 android:title="Third" />
         </menu>
     </item>
+    <group>
+        <item android:id="@+id/second_activity"
+            android:title="@string/second_activity"/>
+    </group>
 </menu>

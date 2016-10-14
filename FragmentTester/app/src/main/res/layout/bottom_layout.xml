@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/holo_red_dark"
+        android:layout_height="wrap_content">
+        <include layout="@layout/horizontal_item"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/holo_blue_dark"
+        android:layout_height="wrap_content">
+        <include layout="@layout/horizontal_item"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/holo_green_dark"
+        android:layout_height="wrap_content">
+        <include layout="@layout/horizontal_item"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/holo_red_light"
+        android:layout_height="wrap_content">
+        <include layout="@layout/horizontal_item"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/holo_blue_light"
+        android:layout_height="wrap_content">
+        <include layout="@layout/horizontal_item"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/holo_green_light"
+        android:layout_height="wrap_content">
+        <include layout="@layout/horizontal_item"/>
+    </RelativeLayout>
+
+</LinearLayout>

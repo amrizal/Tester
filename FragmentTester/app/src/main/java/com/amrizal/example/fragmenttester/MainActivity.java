@@ -1,5 +1,7 @@
 package com.amrizal.example.fragmenttester;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -93,6 +95,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.third_fragment:
                 showThirdFragment();
                 break;
+            case R.id.second_activity:
+                showSecondActivity();
             default:
                 break;
         }
@@ -100,6 +104,12 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void showSecondActivity() {
+        Intent intent = new Intent(this, SecondActivity.class);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);//uncomment this to dismiss the activity when app goes to background
+        startActivityForResult(intent, REQUEST.SECOND_ACTIVITY);
     }
 
     private void showThirdFragment() {
@@ -129,5 +139,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    private class REQUEST {
+        public static final int SECOND_ACTIVITY = 1000;
     }
 }
