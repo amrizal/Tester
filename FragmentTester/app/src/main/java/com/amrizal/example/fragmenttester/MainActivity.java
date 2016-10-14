@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.SubMenu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,6 +19,9 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FirstFragment.OnFragmentInteractionListener, SecondFragment.OnFragmentInteractionListener, ThirdFragment.OnFragmentInteractionListener {
+
+    private MenuItem fragmentGroup;
+    private SubMenu fragmentMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,9 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        fragmentGroup = navigationView.getMenu().getItem(0);
+        fragmentMenu = fragmentGroup.getSubMenu();
 
         showFirstFragment();
     }
@@ -116,29 +123,73 @@ public class MainActivity extends AppCompatActivity
         final ThirdFragment thirdFragment = ThirdFragment.newInstance("", "");
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.root_layout, thirdFragment, "thirdFragment")
-                .commit();
+                .replace(R.id.root_layout, thirdFragment)
+                .commitAllowingStateLoss();
+
+        setFragmentMenuChecked(2);
     }
 
     private void showSecondFragment() {
         final SecondFragment secondFragment = SecondFragment.newInstance("", "");
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.root_layout, secondFragment, "secondFragment")
-                .commit();
+                .replace(R.id.root_layout, secondFragment)
+                .commitAllowingStateLoss();
+
+        setFragmentMenuChecked(1);
     }
 
     private void showFirstFragment() {
         final FirstFragment firstFragment = FirstFragment.newInstance("", "");
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.root_layout, firstFragment, "firstFragment")
-                .commit();
+                .replace(R.id.root_layout, firstFragment)
+                .commitAllowingStateLoss();
+
+        setFragmentMenuChecked(0);
+    }
+
+    void setFragmentMenuChecked(final int index){
+        for(int i=0; i<fragmentMenu.size(); i++){
+            MenuItem item = fragmentMenu.getItem(i);
+            item.setChecked(index == i);
+        }
     }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case REQUEST.SECOND_ACTIVITY:
+                onResultSecondActivity(resultCode, data);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void onResultSecondActivity(final int resultCode, final Intent data) {
+        if(resultCode == Activity.RESULT_CANCELED || data == null){
+            return;
+        }
+
+        switch (data.getIntExtra(EXTRA.FRAGMENT_TO_SHOW, -1)){
+            case 1:
+                showFirstFragment();
+                break;
+            case 2:
+                showSecondFragment();
+                break;
+            case 3:
+                showThirdFragment();
+                break;
+            default:
+                break;
+        }
     }
 
     private class REQUEST {
