@@ -1,9 +1,3 @@
 <resources>
     <string name="app_name">FirebaseTester</string>
-    <string name="firebase_url">https://sizzling-heat-7734.firebaseio.com/</string>
-    <string name="send_message">Send Message</string>
-    <string name="get_message">Get Message</string>
-    <string name="firebase_username">amrizal@outlook.com</string>
-    <string name="firebase_password">temp123!@#</string>
-    <string name="invalidate_account">Invalidate Account</string>
 </resources>
