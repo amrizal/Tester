@@ -33,11 +33,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private FirebaseAuth.AuthStateListener mAuthListener;
     private GoogleApiClient mGoogleApiClient;
     private TextView googleUsername;
+    private View progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        progress = findViewById(R.id.progress_layout);
         initFirebase();
         initGoogleLogin();
     }
@@ -75,12 +77,14 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
+                progress.setVisibility(View.GONE);
                 // ...
             }
         };
     }
 
     public void onLoginGoogle(View view) {
+        progress.setVisibility(View.VISIBLE);
         if(loginGoogle){
             FirebaseAuth.getInstance().signOut();
             /*Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
@@ -135,11 +139,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private void handleGoogleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleGoogleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
-            loginGoogle = true;
-            // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
-            googleUsername.setText(acct.getEmail());
-
             firebaseAuthWithGoogle(acct);
         } else {
             loginGoogle = false;
