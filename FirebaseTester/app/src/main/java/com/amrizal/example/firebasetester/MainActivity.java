@@ -1,14 +1,20 @@
 package com.amrizal.example.firebasetester;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amrizal.example.firebasetester.volley.VolleyHelper;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -34,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private GoogleApiClient mGoogleApiClient;
     private TextView googleUsername;
     private View progress;
+    private ImageView googlePhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     private void initGoogleLogin() {
         googleUsername = (TextView) findViewById(R.id.google_credential);
+        googlePhoto = (ImageView) findViewById(R.id.google_photo);
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -70,10 +78,30 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 if (user != null) {
                     loginGoogle = true;
                     googleUsername.setText(user.getEmail());
+                    Uri photoUri = user.getPhotoUrl();
+                    VolleyHelper.getInstance(getBaseContext()).getImageLoader().get(String.valueOf(photoUri), new ImageLoader.ImageListener() {
+                        @Override
+                        public void onResponse(ImageLoader.ImageContainer imageContainer, boolean b) {
+                            Bitmap bitmap = imageContainer.getBitmap();
+                            googlePhoto.setImageBitmap(bitmap);
+                        }
+
+                        @Override
+                        public void onErrorResponse(VolleyError volleyError) {
+                            googlePhoto.setImageBitmap(null);
+                        }
+                    });
+                    /*if(photoUri != null){
+                        googlePhoto.setImageUrl(String.valueOf(photoUri), MyApplication.getInstance().getImageLoader()); //ImgController from your code.
+                    }else{
+                        googlePhoto.setImageBitmap(null);
+                    }*/
+
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
                     loginGoogle = false;
                     googleUsername.setText("");
+                    googlePhoto.setImageBitmap(null);
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
@@ -86,19 +114,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     public void onLoginGoogle(View view) {
         progress.setVisibility(View.VISIBLE);
         if(loginGoogle){
-            FirebaseAuth.getInstance().signOut();
-            /*Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                    new ResultCallback<Status>() {
-                        @Override
-                        public void onResult(Status status) {
-                            if(status.isSuccess()){
-                                Toast.makeText(getBaseContext(), "Logged out", Toast.LENGTH_LONG).show();
-                            }
-
-                            loginGoogle = false;
-                            googleUsername.setText("");
+            //
+            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(Status status) {
+                        FirebaseAuth.getInstance().signOut();
+                        if(status.isSuccess()){
+                            Toast.makeText(getBaseContext(), "Logged out", Toast.LENGTH_SHORT).show();
                         }
-                    });*/
+                    }
+                });
 
         }else{
             Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
@@ -152,6 +178,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -168,6 +195,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                         // ...
                     }
                 });
+    }
+
+    public void onLoginFacebook(View view) {
     }
 
     private class REQUEST {
