@@ -3,6 +3,7 @@ package com.amrizal.example.fragmenttester;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -25,15 +26,21 @@ public class AlertDialogFragment extends DialogFragment implements View.OnClickL
 
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.CustomDialog);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_alert_dialog, container, false);
 
-        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         rootView.findViewById(R.id.first_fragment).setOnClickListener(this);
         rootView.findViewById(R.id.second_fragment).setOnClickListener(this);
         rootView.findViewById(R.id.third_fragment).setOnClickListener(this);
+        rootView.findViewById(R.id.second_activity).setOnClickListener(this);
 
         return rootView;
     }

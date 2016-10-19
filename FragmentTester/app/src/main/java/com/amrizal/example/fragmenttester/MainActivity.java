@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity
 
     private void showDialogFragment() {
         AlertDialogFragment alertDialogFragment = new AlertDialogFragment();
+        //alertDialogFragment.setCancelable(false);//uncomment this to allow dismiss by clicking outside the dialogfragment
         alertDialogFragment.show(getSupportFragmentManager(), AlertDialogFragment.class.getSimpleName());
     }
 
@@ -216,6 +217,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.third_fragment:
                 showThirdFragment();
+                break;
+            case R.id.second_activity:
+                showSecondActivity();
                 break;
             default:
                 break;
