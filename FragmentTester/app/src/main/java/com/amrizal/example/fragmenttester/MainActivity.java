@@ -18,7 +18,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, FirstFragment.OnFragmentInteractionListener, SecondFragment.OnFragmentInteractionListener, ThirdFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        FirstFragment.OnFragmentInteractionListener,
+        SecondFragment.OnFragmentInteractionListener,
+        ThirdFragment.OnFragmentInteractionListener,
+        AlertDialogFragment.OnFragmentInteractionListener {
 
     private MenuItem fragmentGroup;
     private SubMenu fragmentMenu;
@@ -104,6 +108,10 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.second_activity:
                 showSecondActivity();
+                break;
+            case R.id.dialog_fagment:
+                showDialogFragment();
+                break;
             default:
                 break;
         }
@@ -111,6 +119,11 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void showDialogFragment() {
+        AlertDialogFragment alertDialogFragment = new AlertDialogFragment();
+        alertDialogFragment.show(getSupportFragmentManager(), AlertDialogFragment.class.getSimpleName());
     }
 
     private void showSecondActivity() {
@@ -185,6 +198,23 @@ public class MainActivity extends AppCompatActivity
                 showSecondFragment();
                 break;
             case 3:
+                showThirdFragment();
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onAlertDialogFragmentShowFragment(int id) {
+        switch (id){
+            case R.id.first_fragment:
+                showFirstFragment();
+                break;
+            case R.id.second_fragment:
+                showSecondFragment();
+                break;
+            case R.id.third_fragment:
                 showThirdFragment();
                 break;
             default:

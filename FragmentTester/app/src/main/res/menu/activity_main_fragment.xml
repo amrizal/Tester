@@ -25,4 +25,8 @@
         <item android:id="@+id/second_activity"
             android:title="@string/second_activity"/>
     </group>
+    <group>
+        <item android:id="@+id/dialog_fagment"
+            android:title="@string/dialog_fragment"/>
+    </group>
 </menu>
