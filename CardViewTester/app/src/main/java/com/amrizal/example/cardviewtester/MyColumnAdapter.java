@@ -2,6 +2,7 @@ package com.amrizal.example.cardviewtester;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +16,10 @@ import java.util.ArrayList;
 /**
  * Created by amrizal.zainuddin on 27/10/2016.
  */
-public class MyRecyclerViewAdapter extends RecyclerView
-        .Adapter<MyRecyclerViewAdapter
+public class MyColumnAdapter extends RecyclerView
+        .Adapter<MyColumnAdapter
         .DataObjectHolder> {
-    private static String LOG_TAG = "MyRecyclerViewAdapter";
+    private static String LOG_TAG = "MyColumnAdapter";
     private final Context context;
     private ArrayList<DataObject> mDataset;
     private static MyClickListener myClickListener;
@@ -48,7 +49,7 @@ public class MyRecyclerViewAdapter extends RecyclerView
         this.myClickListener = myClickListener;
     }
 
-    public MyRecyclerViewAdapter(Context context, ArrayList<DataObject> myDataset) {
+    public MyColumnAdapter(Context context, ArrayList<DataObject> myDataset) {
         this.context = context;
         mDataset = myDataset;
     }
