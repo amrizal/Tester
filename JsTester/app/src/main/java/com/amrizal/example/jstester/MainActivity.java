@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
@@ -37,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
         browser.addJavascriptInterface(new WebAppInterface(this), "Android");
         browser.loadUrl("file:///android_asset/sample_3.html");
 
+    }
+
+    public void onSendValue(View view) {
+        browser.loadUrl("JavaScript:showValueFromAndroid('This value is from Android')");
     }
 
     public class WebAppInterface {

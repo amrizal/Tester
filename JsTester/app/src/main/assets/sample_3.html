@@ -4,6 +4,7 @@
 <body>
 <input type="button" value="Say hello" onClick="showAndroidToast('Hello Android!')" />
 <input type="button" value="Send value to Android" onClick="sendValueToAndroid('Value from Js')" />
+<p> Value from Android is <input type="text" id="valuefromAndroid" />
 
 <script type="text/javascript">
     function showAndroidToast(toast) {
@@ -12,6 +13,10 @@
 
     function sendValueToAndroid(value) {
         Android.setAndroidValue(value);
+    }
+
+    function showValueFromAndroid(value){
+        document.getElementById("valuefromAndroid").value = value;
     }
 </script>
 </body>
