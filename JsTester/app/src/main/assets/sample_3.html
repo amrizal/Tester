@@ -3,10 +3,15 @@
 </head>
 <body>
 <input type="button" value="Say hello" onClick="showAndroidToast('Hello Android!')" />
+<input type="button" value="Send value to Android" onClick="sendValueToAndroid('Value from Js')" />
 
 <script type="text/javascript">
     function showAndroidToast(toast) {
         Android.showToast(toast);
+    }
+
+    function sendValueToAndroid(value) {
+        Android.setAndroidValue(value);
     }
 </script>
 </body>
