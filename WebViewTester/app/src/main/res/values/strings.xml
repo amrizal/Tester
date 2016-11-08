@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">WebViewTester</string>
+    <string name="google_url">http://www.google.com</string>
+</resources>
