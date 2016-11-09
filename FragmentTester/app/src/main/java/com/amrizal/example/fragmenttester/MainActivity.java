@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity
 
     private MenuItem fragmentGroup;
     private SubMenu fragmentMenu;
+    private boolean start = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +55,16 @@ public class MainActivity extends AppCompatActivity
 
         fragmentGroup = navigationView.getMenu().getItem(0);
         fragmentMenu = fragmentGroup.getSubMenu();
+    }
 
-        showFirstFragment();
+    private void initMainFragment() {
+        final MainFragment mainFragment = MainFragment.newInstance();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.root_layout, mainFragment)
+                .commitAllowingStateLoss();
+
+        //setFragmentMenuChecked(0);
     }
 
     @Override
@@ -63,7 +72,7 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        }else {
             super.onBackPressed();
         }
     }
@@ -94,9 +103,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
         switch(item.getItemId()){
+            case R.id.main_fragment:
+                clearBackstacks();
+                break;
             case R.id.first_fragment:
                 showFirstFragment();
                 break;
@@ -121,6 +131,12 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    private void clearBackstacks() {
+        if(getSupportFragmentManager().getBackStackEntryCount() > 0){
+            getSupportFragmentManager().popBackStack();
+        }
+    }
+
     private void showDialogFragment() {
         AlertDialogFragment alertDialogFragment = new AlertDialogFragment();
         //alertDialogFragment.setCancelable(false);//uncomment this to allow dismiss by clicking outside the dialogfragment
@@ -134,39 +150,49 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void showThirdFragment() {
+        clearBackstacks();
         final ThirdFragment thirdFragment = ThirdFragment.newInstance("", "");
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.root_layout, thirdFragment)
+                .addToBackStack(null)
                 .commitAllowingStateLoss();
 
-        setFragmentMenuChecked(2);
+        setFragmentMenuChecked(R.id.third_fragment);
     }
 
     private void showSecondFragment() {
+        clearBackstacks();
         final SecondFragment secondFragment = SecondFragment.newInstance("", "");
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.root_layout, secondFragment)
+                .addToBackStack(null)
                 .commitAllowingStateLoss();
 
-        setFragmentMenuChecked(1);
+        setFragmentMenuChecked(R.id.second_fragment);
     }
 
     private void showFirstFragment() {
+        clearBackstacks();
         final FirstFragment firstFragment = FirstFragment.newInstance("", "");
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.root_layout, firstFragment)
+                .addToBackStack(null)
                 .commitAllowingStateLoss();
 
-        setFragmentMenuChecked(0);
+        setFragmentMenuChecked(R.id.first_fragment);
     }
 
-    void setFragmentMenuChecked(final int index){
+    void setFragmentMenuChecked(final int id){
+        if(true){
+            return;
+        }
+
         for(int i=0; i<fragmentMenu.size(); i++){
             MenuItem item = fragmentMenu.getItem(i);
-            item.setChecked(index == i);
+            item.setChecked(item.getItemId() == id);
         }
     }
 
@@ -174,6 +200,8 @@ public class MainActivity extends AppCompatActivity
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -183,6 +211,16 @@ public class MainActivity extends AppCompatActivity
                 break;
             default:
                 break;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(start){
+            start = false;
+            initMainFragment();
         }
     }
 

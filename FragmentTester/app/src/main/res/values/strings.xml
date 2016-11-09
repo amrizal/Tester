@@ -13,4 +13,17 @@
     <string name="second_fragment">Second Fragment</string>
     <string name="third_fragment">Third Fragment</string>
     <string name="dialog_fragment">Dialog Fragment</string>
+    <string name="main_fragment">Main Fragment</string>
+
+    <string-array name="planets">
+        <item>Sun</item>
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
 </resources>
