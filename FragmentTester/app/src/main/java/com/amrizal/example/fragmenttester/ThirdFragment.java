@@ -6,12 +6,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
+
+import com.amrizal.example.fragmenttester.adapter.PairAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -22,7 +27,7 @@ import android.widget.Toast;
  * Use the {@link ThirdFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ThirdFragment extends ListFragment implements AdapterView.OnItemClickListener {
+public class ThirdFragment extends ListFragment implements AdapterView.OnItemClickListener, PairAdapter.PairAdapterCallback {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -33,6 +38,8 @@ public class ThirdFragment extends ListFragment implements AdapterView.OnItemCli
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private PairAdapter adapter;
+    private List<Pair<String, Boolean>> data;
 
     public ThirdFragment() {
         // Required empty public constructor
@@ -77,8 +84,12 @@ public class ThirdFragment extends ListFragment implements AdapterView.OnItemCli
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.planets, android.R.layout.simple_list_item_1);
+        data = new ArrayList<>();
+        for(int i=0; i<100; i++){
+            data.add(new Pair<String, Boolean>("Field " + (i+1), i%2>0));
+        }
+
+        adapter = new PairAdapter(getActivity(), this, data);
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
     }
@@ -109,7 +120,24 @@ public class ThirdFragment extends ListFragment implements AdapterView.OnItemCli
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Toast.makeText(getActivity(), getListAdapter().getItem(i).toString(), Toast.LENGTH_SHORT).show();
+        adapter.setActiveIndex(i);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onItemButton1Clicked(int position) {
+        Pair<String, Boolean> item = data.get(position);
+        if(item != null){
+            Toast.makeText(getActivity(), "Button 1, " + item.first + " clicked!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onItemCheckChanged(int position, boolean checked) {
+        Pair<String, Boolean> item = data.get(position);
+        if(item != null){
+            Toast.makeText(getActivity(), "Button 1, " + item.first + " check changed!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
