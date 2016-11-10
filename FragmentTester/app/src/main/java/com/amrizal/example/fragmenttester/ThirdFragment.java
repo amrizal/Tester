@@ -16,7 +16,9 @@ import android.widget.Toast;
 import com.amrizal.example.fragmenttester.adapter.PairAdapter;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -39,7 +41,7 @@ public class ThirdFragment extends ListFragment implements AdapterView.OnItemCli
 
     private OnFragmentInteractionListener mListener;
     private PairAdapter adapter;
-    private List<Pair<String, Boolean>> data;
+    private LinkedHashMap<String, Boolean> data;
 
     public ThirdFragment() {
         // Required empty public constructor
@@ -84,9 +86,9 @@ public class ThirdFragment extends ListFragment implements AdapterView.OnItemCli
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        data = new ArrayList<>();
+        data = new LinkedHashMap<>();
         for(int i=0; i<100; i++){
-            data.add(new Pair<String, Boolean>("Field " + (i+1), i%2>0));
+            data.put("Field " + (i+1), false);
         }
 
         adapter = new PairAdapter(getActivity(), this, data);
@@ -126,18 +128,20 @@ public class ThirdFragment extends ListFragment implements AdapterView.OnItemCli
 
     @Override
     public void onItemButton1Clicked(int position) {
-        Pair<String, Boolean> item = data.get(position);
+        Map.Entry<String, Boolean> item = adapter.getItem(position);
         if(item != null){
-            Toast.makeText(getActivity(), "Button 1, " + item.first + " clicked!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Button 1, " + item.getKey() + " clicked!", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void onItemCheckChanged(int position, boolean checked) {
-        Pair<String, Boolean> item = data.get(position);
+        Map.Entry<String, Boolean> item = adapter.getItem(position);
         if(item != null){
-            Toast.makeText(getActivity(), "Button 1, " + item.first + " check changed!", Toast.LENGTH_SHORT).show();
+            item.setValue(checked);
+            Toast.makeText(getActivity(), "Button 1, " + item.getKey() + " check changed!", Toast.LENGTH_SHORT).show();
         }
+        adapter.notifyDataSetChanged();
     }
 
     /**

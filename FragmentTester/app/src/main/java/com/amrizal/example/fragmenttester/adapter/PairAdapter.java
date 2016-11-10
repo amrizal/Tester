@@ -13,7 +13,9 @@ import android.widget.TextView;
 
 import com.amrizal.example.fragmenttester.R;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by amrizal.zainuddin on 10/11/2016.
@@ -21,11 +23,11 @@ import java.util.List;
 public class PairAdapter extends BaseAdapter {
 
     private final LayoutInflater inflater;
-    List<Pair<String, Boolean>> data;
+    LinkedHashMap<String, Boolean> data;
     int activeIndex = -1;
     private PairAdapterCallback listener;
 
-    public PairAdapter(Context context, PairAdapterCallback callback, List<Pair<String, Boolean>> data) {
+    public PairAdapter(Context context, PairAdapterCallback callback, LinkedHashMap<String, Boolean> data) {
         this.data = data;
         this.listener = callback;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -41,8 +43,16 @@ public class PairAdapter extends BaseAdapter {
     }
 
     @Override
-    public Pair<String, Boolean> getItem(int i) {
-        return data.get(i);
+    public Map.Entry<String, Boolean> getItem(int i) {
+        int index = -1;
+        for(Map.Entry<String, Boolean> entry:data.entrySet()){
+            index++;
+            if(index == i){
+                return entry;
+            }
+        }
+
+        return  null;
     }
 
     @Override
@@ -73,10 +83,10 @@ public class PairAdapter extends BaseAdapter {
         }
 
         holder.toggle.setOnCheckedChangeListener(null);
-        Pair<String, Boolean> item = data.get(i);
+        Map.Entry<String, Boolean> item = getItem(i);
         if(item != null){
-            holder.left.setText(item.first);
-            holder.toggle.setChecked(item.second);
+            holder.left.setText(item.getKey());
+            holder.toggle.setChecked(item.getValue());
         }
 
         holder.toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
