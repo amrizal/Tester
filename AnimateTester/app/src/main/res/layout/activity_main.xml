@@ -44,7 +44,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="40dp"
-        android:onClick="clockwise"/>
+        android:onClick="zoom"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
         android:id="@+id/button2"
         android:layout_alignTop="@+id/button"
         android:layout_centerHorizontal="true"
-        android:onClick="zoom"/>
+        android:onClick="clockwise"/>
 
     <Button
         android:layout_width="wrap_content"

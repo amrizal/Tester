@@ -2,7 +2,6 @@ package com.amrizal.example.animatetester;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -16,13 +15,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void clockwise(View view){
+    public void zoom(View view){
         ImageView image = (ImageView)findViewById(R.id.imageView);
-        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.myanimation);
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom);
         image.startAnimation(animation);
     }
 
-    public void zoom(View view){
+    public void clockwise(View view){
         ImageView image = (ImageView)findViewById(R.id.imageView);
         Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.clockwise);
         image.startAnimation(animation1);
