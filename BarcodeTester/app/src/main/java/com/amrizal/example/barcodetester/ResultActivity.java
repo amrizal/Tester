@@ -27,7 +27,7 @@ public class ResultActivity extends AppCompatActivity {
     private static final String GOOGLE_BOOKS_URL = "https://www.googleapis.com/books/v1/volumes?q=";
     private static final String TAG = ResultActivity.class.getSimpleName();
 
-    ListView resultListView;
+    RecyclerView resultListView;
     ResultListAdapter adapter;
     List<Result> resultList = new ArrayList<>();
     String isbn;
@@ -37,7 +37,7 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        resultListView = (ListView) findViewById(R.id.result_list);
+        resultListView = (RecyclerView)findViewById(R.id.result_list);
 
         adapter = new ResultListAdapter(this, resultList);
         resultListView.setAdapter(adapter);

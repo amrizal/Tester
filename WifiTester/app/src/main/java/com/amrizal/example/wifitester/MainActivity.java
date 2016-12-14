@@ -10,8 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +25,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context c, Intent intent) {
             if (intent.getAction().equals(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)) {
+
+                Date date = new Date(System.currentTimeMillis());
+                //SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd hh:mm aa");
+                lastUpdated.setText("Last updated: " + date.toString());
+
                 List<ScanResult> mScanResults = wifiManager.getScanResults();
                 for(ScanResult result:mScanResults){
                     Log.d(TAG, "SSID: " + result.SSID + ", BSID: " + result.BSSID + ", Capabilities: " + result.capabilities);
@@ -32,11 +41,14 @@ public class MainActivity extends AppCompatActivity {
         }
     };
     private ScanResultAdapter adapter;
+    private TextView lastUpdated;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        lastUpdated = (TextView) findViewById(R.id.last_updated);
 
         adapter = new ScanResultAdapter(this);
         ListView listView = (ListView) findViewById(R.id.list_item);

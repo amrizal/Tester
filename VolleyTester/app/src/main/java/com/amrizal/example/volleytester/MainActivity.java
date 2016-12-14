@@ -48,8 +48,7 @@ public class MainActivity extends AppCompatActivity {
         pDialog.setMessage("Loading...");
         pDialog.show();
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                url, null,
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
 
                     @Override

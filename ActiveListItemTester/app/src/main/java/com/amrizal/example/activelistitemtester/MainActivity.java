@@ -3,6 +3,8 @@ package com.amrizal.example.activelistitemtester;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -13,6 +15,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements ItemAdapter.OnDataItemClickListener {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
     List<DataItem> data;
     private ItemAdapter itemAdapter;
     private ListView listView;
@@ -49,6 +52,26 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.OnDat
                 }
             }
         });
+
+        List<Pair<Integer, Integer>> col = new ArrayList<>();
+        col.add(new Pair<>(1,2));
+        col.add(new Pair<>(1,3));
+        col.add(new Pair<>(1,4));
+        col.add(new Pair<>(1,2));
+        col.add(new Pair<>(2,2));
+        col.add(new Pair<>(3,2));
+
+        Pair<String, String> pair1 = new Pair<>("1","1");
+        Pair<String, String> pair2 = new Pair<>("1","1");
+        if(pair1 == pair2){
+            Log.d(TAG, "Equals");
+        }else{
+            Log.d(TAG, "Not equals");
+        }
+
+        for(Pair<Integer, Integer> item:col){
+            Log.d(TAG, "First:" + item.first + ", Second:" + item.second);
+        }
     }
 
     @Override

@@ -41,7 +41,6 @@ public class ThirdFragment extends ListFragment implements AdapterView.OnItemCli
 
     private OnFragmentInteractionListener mListener;
     private PairAdapter adapter;
-    private LinkedHashMap<String, Boolean> data;
 
     public ThirdFragment() {
         // Required empty public constructor
@@ -86,7 +85,7 @@ public class ThirdFragment extends ListFragment implements AdapterView.OnItemCli
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        data = new LinkedHashMap<>();
+        LinkedHashMap<String, Boolean> data = new LinkedHashMap<>();
         for(int i=0; i<100; i++){
             data.put("Field " + (i+1), false);
         }

@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">LocationTester</string>
+    <string name="start_service">Start</string>
+    <string name="stop_service">Stop</string>
+    <string name="clear_logs">Clear Logs</string>
+</resources>

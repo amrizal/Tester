@@ -62,6 +62,7 @@ public class ItemAdapter extends BaseAdapter {
             holder.panel = convertView.findViewById(R.id.item_panel);
             holder.button1 = (Button) convertView.findViewById(R.id.button_1);
             holder.button2 = (Button) convertView.findViewById(R.id.button_2);
+            holder.listView = (ListView) convertView.findViewById(R.id.item_list);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder)convertView.getTag();
@@ -92,6 +93,7 @@ public class ItemAdapter extends BaseAdapter {
         public View panel;
         public Button button1;
         public Button button2;
+        public ListView listView;
     }
 
     public interface OnDataItemClickListener{

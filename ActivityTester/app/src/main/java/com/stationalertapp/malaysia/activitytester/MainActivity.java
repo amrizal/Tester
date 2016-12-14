@@ -1,5 +1,6 @@
 package com.stationalertapp.malaysia.activitytester;
 
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -113,7 +114,13 @@ public class MainActivity extends BaseActivity {
         final Intent intent = new Intent(this, Main2Activity.class);
         String value = String.valueOf(editText.getText());
         intent.putExtra(Main2Activity.VALUE, value);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivityForResult(intent, 1001);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
