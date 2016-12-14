@@ -6,4 +6,6 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="gps_disable_query">Your GPS seems to be disabled, do you want to enable it?</string>
+    <string name="service_is_running">Service is running</string>
+    <string name="show">Show</string>
 </resources>

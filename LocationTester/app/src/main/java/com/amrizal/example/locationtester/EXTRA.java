@@ -5,4 +5,5 @@ package com.amrizal.example.locationtester;
  */
 public class EXTRA {
     public static final String LOG_LINE = "EXTRA.LOG_LINE";
+    public static final String STOP_SERVICE = "EXTRA.STOP_SERVICE";
 }

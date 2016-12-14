@@ -129,6 +129,13 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(BROADCAST.LOG_LINE);
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver, intentFilter);
+
+        Intent intent = getIntent();
+        if(intent != null && intent.getBooleanExtra(EXTRA.STOP_SERVICE, false)){
+            addLog("Stopping service..");
+            stopService(new Intent(getBaseContext(), MyLocationService.class));
+            return;
+        }
     }
 
     private boolean verifyLocationEnabled() {
