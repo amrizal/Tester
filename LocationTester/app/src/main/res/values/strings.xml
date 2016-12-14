@@ -3,4 +3,7 @@
     <string name="start_service">Start</string>
     <string name="stop_service">Stop</string>
     <string name="clear_logs">Clear Logs</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="gps_disable_query">Your GPS seems to be disabled, do you want to enable it?</string>
 </resources>
