@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TtsTester</string>
+    <string name="test">Test</string>
+    <string name="no_result">No Result</string>
+</resources>
